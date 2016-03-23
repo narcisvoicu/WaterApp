@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF97575D0DA44745E0FC9AA1 /* Pods_Water_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */; };
+		EC4B5CDC1C85C6D3001D43D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */; };
+		EC4B5CDE1C85C6D3001D43D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */; };
+		EC4B5CE01C85C6D3001D43D9 /* WaterSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CDF1C85C6D3001D43D9 /* WaterSourcesViewController.swift */; };
+		EC4B5CE31C85C6D3001D43D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4B5CE11C85C6D3001D43D9 /* Main.storyboard */; };
+		EC4B5CE51C85C6D3001D43D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4B5CE41C85C6D3001D43D9 /* Assets.xcassets */; };
+		EC4B5CE81C85C6D3001D43D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4B5CE61C85C6D3001D43D9 /* LaunchScreen.storyboard */; };
+		EC4B5CF01C85D6FF001D43D9 /* BottlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CEF1C85D6FF001D43D9 /* BottlesViewController.swift */; };
+		EC4B5CF21C85D710001D43D9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CF11C85D710001D43D9 /* MyAccountViewController.swift */; };
+		EC4B5CFD1C85E062001D43D9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CFC1C85E062001D43D9 /* TabBarController.swift */; };
+		EC51BFB81C88889D0042357D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BFB71C88889D0042357D /* LoginViewController.swift */; };
+		EC932D4F1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC932D4E1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift */; };
+		ECA0FD021C9492FB00BA922D /* AddedByMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD011C9492FB00BA922D /* AddedByMeViewController.swift */; };
+		ECA0FD041C94930F00BA922D /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD031C94930F00BA922D /* FavoritesViewController.swift */; };
+		ECA0FD061C94BC1000BA922D /* AddBottlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */; };
+		ECA0FD081C94BC2100BA922D /* AddSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */; };
+		ECA0FD0A1C94BC3900BA922D /* InfoBottlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */; };
+		ECA0FD0C1C94BC4B00BA922D /* InfoSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */; };
+		ECC1471C1C8CD956006E2009 /* 3883517_orig.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC1471B1C8CD956006E2009 /* 3883517_orig.png */; };
+		ECC1471E1C8CDA4C006E2009 /* Contacts Filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC1471D1C8CDA4C006E2009 /* Contacts Filled@2x.png */; };
+		ECC147201C8CDADF006E2009 /* Home Filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC1471F1C8CDADF006E2009 /* Home Filled@2x.png */; };
+		ECC147221C8CDB9F006E2009 /* Bottle of Water Filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC147211C8CDB9F006E2009 /* Bottle of Water Filled@2x.png */; };
+		ECC147241C8CDBE4006E2009 /* Fire Hydrant Filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC147231C8CDBE4006E2009 /* Fire Hydrant Filled@2x.png */; };
+		ECC147261C8CDCD5006E2009 /* Plumbing Filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC147251C8CDCD5006E2009 /* Plumbing Filled@2x.png */; };
+		ECE297A31C89CF4C00DE8294 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE297A21C89CF4C00DE8294 /* SignInViewController.swift */; };
+		ECEEC0151C91BFA500C6EC52 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEC0141C91BFA500C6EC52 /* DataService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Water_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78654F255652256C0276D37B /* Pods-Water App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.debug.xcconfig"; sourceTree = "<group>"; };
+		DAE384D6342C497E087799E3 /* Pods-Water App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.release.xcconfig"; sourceTree = "<group>"; };
+		EC4B5CD81C85C6D3001D43D9 /* Water App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Water App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EC4B5CDF1C85C6D3001D43D9 /* WaterSourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterSourcesViewController.swift; sourceTree = "<group>"; };
+		EC4B5CE21C85C6D3001D43D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC4B5CE41C85C6D3001D43D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC4B5CE71C85C6D3001D43D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC4B5CE91C85C6D3001D43D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC4B5CEF1C85D6FF001D43D9 /* BottlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottlesViewController.swift; sourceTree = "<group>"; };
+		EC4B5CF11C85D710001D43D9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		EC4B5CFC1C85E062001D43D9 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		EC51BFB71C88889D0042357D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EC932D4E1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		ECA0FD011C9492FB00BA922D /* AddedByMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedByMeViewController.swift; sourceTree = "<group>"; };
+		ECA0FD031C94930F00BA922D /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBottlesViewController.swift; sourceTree = "<group>"; };
+		ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSourcesViewController.swift; sourceTree = "<group>"; };
+		ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoBottlesViewController.swift; sourceTree = "<group>"; };
+		ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoSourcesViewController.swift; sourceTree = "<group>"; };
+		ECC1471B1C8CD956006E2009 /* 3883517_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3883517_orig.png; sourceTree = "<group>"; };
+		ECC1471D1C8CDA4C006E2009 /* Contacts Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contacts Filled@2x.png"; sourceTree = "<group>"; };
+		ECC1471F1C8CDADF006E2009 /* Home Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home Filled@2x.png"; sourceTree = "<group>"; };
+		ECC147211C8CDB9F006E2009 /* Bottle of Water Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bottle of Water Filled@2x.png"; sourceTree = "<group>"; };
+		ECC147231C8CDBE4006E2009 /* Fire Hydrant Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fire Hydrant Filled@2x.png"; sourceTree = "<group>"; };
+		ECC147251C8CDCD5006E2009 /* Plumbing Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plumbing Filled@2x.png"; sourceTree = "<group>"; };
+		ECE297A21C89CF4C00DE8294 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		ECEEC0141C91BFA500C6EC52 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC4B5CD51C85C6D3001D43D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF97575D0DA44745E0FC9AA1 /* Pods_Water_App.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FED79B9F2431159C21F5FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6FD6E9F3EF51E316AE2302E4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				78654F255652256C0276D37B /* Pods-Water App.debug.xcconfig */,
+				DAE384D6342C497E087799E3 /* Pods-Water App.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EC4B5CCF1C85C6D3001D43D9 = {
+			isa = PBXGroup;
+			children = (
+				EC4B5CDA1C85C6D3001D43D9 /* Water App */,
+				EC4B5CD91C85C6D3001D43D9 /* Products */,
+				6FD6E9F3EF51E316AE2302E4 /* Pods */,
+				08FED79B9F2431159C21F5FA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EC4B5CD91C85C6D3001D43D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC4B5CD81C85C6D3001D43D9 /* Water App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC4B5CDA1C85C6D3001D43D9 /* Water App */ = {
+			isa = PBXGroup;
+			children = (
+				EC4B5CF31C85DA80001D43D9 /* Resources */,
+				EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */,
+				ECEEC0141C91BFA500C6EC52 /* DataService.swift */,
+				EC4B5CFC1C85E062001D43D9 /* TabBarController.swift */,
+				EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */,
+				ECE297A21C89CF4C00DE8294 /* SignInViewController.swift */,
+				EC51BFB71C88889D0042357D /* LoginViewController.swift */,
+				EC4B5CDF1C85C6D3001D43D9 /* WaterSourcesViewController.swift */,
+				EC4B5CEF1C85D6FF001D43D9 /* BottlesViewController.swift */,
+				EC4B5CF11C85D710001D43D9 /* MyAccountViewController.swift */,
+				ECA0FD031C94930F00BA922D /* FavoritesViewController.swift */,
+				ECA0FD011C9492FB00BA922D /* AddedByMeViewController.swift */,
+				EC932D4E1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift */,
+				EC4B5CE11C85C6D3001D43D9 /* Main.storyboard */,
+				ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */,
+				ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */,
+				ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */,
+				ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */,
+				EC4B5CE41C85C6D3001D43D9 /* Assets.xcassets */,
+				EC4B5CE61C85C6D3001D43D9 /* LaunchScreen.storyboard */,
+				EC4B5CE91C85C6D3001D43D9 /* Info.plist */,
+			);
+			path = "Water App";
+			sourceTree = "<group>";
+		};
+		EC4B5CF31C85DA80001D43D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ECC1471B1C8CD956006E2009 /* 3883517_orig.png */,
+				ECC1471D1C8CDA4C006E2009 /* Contacts Filled@2x.png */,
+				ECC1471F1C8CDADF006E2009 /* Home Filled@2x.png */,
+				ECC147211C8CDB9F006E2009 /* Bottle of Water Filled@2x.png */,
+				ECC147231C8CDBE4006E2009 /* Fire Hydrant Filled@2x.png */,
+				ECC147251C8CDCD5006E2009 /* Plumbing Filled@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC4B5CD71C85C6D3001D43D9 /* Water App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC4B5CEC1C85C6D3001D43D9 /* Build configuration list for PBXNativeTarget "Water App" */;
+			buildPhases = (
+				2418C5C2A712F35CA0BDACFE /* Check Pods Manifest.lock */,
+				EC4B5CD41C85C6D3001D43D9 /* Sources */,
+				EC4B5CD51C85C6D3001D43D9 /* Frameworks */,
+				EC4B5CD61C85C6D3001D43D9 /* Resources */,
+				C36AFBBFDD65E709AD3F7130 /* Embed Pods Frameworks */,
+				56900290426B07C382D7877D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Water App";
+			productName = "Water App";
+			productReference = EC4B5CD81C85C6D3001D43D9 /* Water App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC4B5CD01C85C6D3001D43D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Advahoo;
+				TargetAttributes = {
+					EC4B5CD71C85C6D3001D43D9 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = EC4B5CD31C85C6D3001D43D9 /* Build configuration list for PBXProject "Water App" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC4B5CCF1C85C6D3001D43D9;
+			productRefGroup = EC4B5CD91C85C6D3001D43D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC4B5CD71C85C6D3001D43D9 /* Water App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC4B5CD61C85C6D3001D43D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECC147221C8CDB9F006E2009 /* Bottle of Water Filled@2x.png in Resources */,
+				EC4B5CE81C85C6D3001D43D9 /* LaunchScreen.storyboard in Resources */,
+				EC4B5CE51C85C6D3001D43D9 /* Assets.xcassets in Resources */,
+				ECC147261C8CDCD5006E2009 /* Plumbing Filled@2x.png in Resources */,
+				ECC147201C8CDADF006E2009 /* Home Filled@2x.png in Resources */,
+				ECC1471C1C8CD956006E2009 /* 3883517_orig.png in Resources */,
+				ECC1471E1C8CDA4C006E2009 /* Contacts Filled@2x.png in Resources */,
+				EC4B5CE31C85C6D3001D43D9 /* Main.storyboard in Resources */,
+				ECC147241C8CDBE4006E2009 /* Fire Hydrant Filled@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2418C5C2A712F35CA0BDACFE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		56900290426B07C382D7877D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Water App/Pods-Water App-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C36AFBBFDD65E709AD3F7130 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Water App/Pods-Water App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC4B5CD41C85C6D3001D43D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC51BFB81C88889D0042357D /* LoginViewController.swift in Sources */,
+				EC4B5CE01C85C6D3001D43D9 /* WaterSourcesViewController.swift in Sources */,
+				EC4B5CDC1C85C6D3001D43D9 /* AppDelegate.swift in Sources */,
+				EC4B5CF21C85D710001D43D9 /* MyAccountViewController.swift in Sources */,
+				ECE297A31C89CF4C00DE8294 /* SignInViewController.swift in Sources */,
+				EC932D4F1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift in Sources */,
+				EC4B5CFD1C85E062001D43D9 /* TabBarController.swift in Sources */,
+				EC4B5CF01C85D6FF001D43D9 /* BottlesViewController.swift in Sources */,
+				ECA0FD0A1C94BC3900BA922D /* InfoBottlesViewController.swift in Sources */,
+				ECA0FD0C1C94BC4B00BA922D /* InfoSourcesViewController.swift in Sources */,
+				EC4B5CDE1C85C6D3001D43D9 /* HomeViewController.swift in Sources */,
+				ECA0FD081C94BC2100BA922D /* AddSourcesViewController.swift in Sources */,
+				ECA0FD021C9492FB00BA922D /* AddedByMeViewController.swift in Sources */,
+				ECA0FD061C94BC1000BA922D /* AddBottlesViewController.swift in Sources */,
+				ECA0FD041C94930F00BA922D /* FavoritesViewController.swift in Sources */,
+				ECEEC0151C91BFA500C6EC52 /* DataService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EC4B5CE11C85C6D3001D43D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC4B5CE21C85C6D3001D43D9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC4B5CE61C85C6D3001D43D9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC4B5CE71C85C6D3001D43D9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC4B5CEA1C85C6D3001D43D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EC4B5CEB1C85C6D3001D43D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC4B5CED1C85C6D3001D43D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78654F255652256C0276D37B /* Pods-Water App.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Water App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "advahoo.Water-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EC4B5CEE1C85C6D3001D43D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAE384D6342C497E087799E3 /* Pods-Water App.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Water App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "advahoo.Water-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC4B5CD31C85C6D3001D43D9 /* Build configuration list for PBXProject "Water App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC4B5CEA1C85C6D3001D43D9 /* Debug */,
+				EC4B5CEB1C85C6D3001D43D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC4B5CEC1C85C6D3001D43D9 /* Build configuration list for PBXNativeTarget "Water App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC4B5CED1C85C6D3001D43D9 /* Debug */,
+				EC4B5CEE1C85C6D3001D43D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC4B5CD01C85C6D3001D43D9 /* Project object */;
+}
