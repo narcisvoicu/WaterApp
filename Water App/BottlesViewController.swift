@@ -8,10 +8,13 @@
 
 import UIKit
 
-class BottlesViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate {
+class BottlesViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     
-    
+    var bottles = [String]()
+    var filteredBottles = [String]()
+    var showResults = false
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBAction func dismissKeyboard(sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -20,15 +23,43 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        bottles = ["Bucovina", "Dorna", "Perla Harghitei"]
         
-         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addItems")
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addItems")
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if showResults == true{
+            return filteredBottles.count
+        } else {
+            return bottles.count
+        }
+    
+    }
+   
+   
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        
+        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("bottle")!
+        
+        if showResults == true{
+            cell.textLabel?.text = filteredBottles[indexPath.row]
+        } else {
+            cell.textLabel?.text = bottles[indexPath.row]
+        }
+        
+        
+        
+        return cell
     }
     
     

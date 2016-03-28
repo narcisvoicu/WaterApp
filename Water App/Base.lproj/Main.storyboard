@@ -583,6 +583,20 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3AF-an-ihO">
                                 <rect key="frame" x="0.0" y="108" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bottle" id="q3E-WW-2jG">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q3E-WW-2jG" id="IUU-Ps-4Eo">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Gdv-vH-cwL" id="PQJ-vL-3pI"/>
+                                    <outlet property="delegate" destination="Gdv-vH-cwL" id="mWw-Ib-KNC"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -602,6 +616,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Bottles" id="bEn-T3-ecK"/>
                     <connections>
+                        <outlet property="searchBar" destination="meJ-Cg-hbE" id="yfk-tT-HdN"/>
                         <segue destination="Gei-4o-nyi" kind="show" identifier="addBottle" id="bwL-p9-xmb"/>
                         <segue destination="S4C-zn-5FP" kind="show" id="NYa-wv-hfQ"/>
                     </connections>
