@@ -8,13 +8,15 @@
 
 import UIKit
 
-class BottlesViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
     
     
     var bottles = [String]()
     var filteredBottles = [String]()
     var showResults = false
-    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var searchController: UISearchController!
+    @IBOutlet weak var tableView: UITableView!
     
     @IBAction func dismissKeyboard(sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -25,6 +27,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UITableViewD
 
         bottles = ["Bucovina", "Dorna", "Perla Harghitei"]
         
+        configureSearchController()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addItems")
         
@@ -37,7 +40,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UITableViewD
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if showResults == true{
+        if showResults == true && searchController.searchBar.text != ""{
             return filteredBottles.count
         } else {
             return bottles.count
@@ -45,24 +48,26 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UITableViewD
     
     }
    
-   
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("bottle")!
         
-        if showResults == true{
+        if showResults == true && searchController.searchBar.text != ""{
             cell.textLabel?.text = filteredBottles[indexPath.row]
         } else {
             cell.textLabel?.text = bottles[indexPath.row]
         }
-        
-        
-        
+
         return cell
     }
     
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        print(bottles[indexPath.row] as String)
+    }
+
     
     func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
         searchBar.endEditing(true)
@@ -82,19 +87,57 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UITableViewD
             presentViewController(ac, animated: true, completion: nil)
         }
     }
+    
+    func configureSearchController(){
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search bottle here..."
+        searchController.searchBar.sizeToFit()
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if showResults == false {
+            showResults = true
+            tableView.reloadData()
+        }
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        showResults = false
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        showResults = true
+        tableView.reloadData()
+    }
+
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchData = searchController.searchBar.text
+        filteredBottles = bottles.filter({ (bottle) -> Bool in
+            return bottle.lowercaseString.containsString((searchData?.lowercaseString)!)
+        })
+        
+        tableView.reloadData()
+    }
+    
 
     
-    
-    
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "bottleDetails"{
+            if let infoBottle = 
+        }
     }
-    */
+    
 
 }
