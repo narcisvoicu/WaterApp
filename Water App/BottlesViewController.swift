@@ -56,7 +56,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         if showResults == true && searchController.searchBar.text != ""{
             cell.textLabel?.text = filteredBottles[indexPath.row]
         } else {
-            cell.textLabel?.text = bottles[indexPath.row]
+            cell.textLabel?.text = bottles[indexPath.row] as! String
         }
 
         return cell
@@ -65,7 +65,8 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        print(bottles[indexPath.row] as String)
+        
+        print(bottles[indexPath.row])
     }
 
     
@@ -135,7 +136,13 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "bottleDetails"{
-            if let infoBottle = 
+            if let infoBottle = segue.destinationViewController as? InfoBottlesViewController{
+                if let bottleIndex = tableView.indexPathForSelectedRow?.row {
+                    infoBottle.bottleName1 = bottles[bottleIndex]
+                    
+                }
+            }
+            
         }
     }
     

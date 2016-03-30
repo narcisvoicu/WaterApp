@@ -54,7 +54,7 @@ class LoginViewController: UIViewController{
         
         let ac = UIAlertController(title: "Forgot Password", message: "Enter your email address below", preferredStyle: UIAlertControllerStyle.Alert)
         
-       ac.addTextFieldWithConfigurationHandler(nil)
+        ac.addTextFieldWithConfigurationHandler(nil)
         
         ac.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
             sendPassToEmailTf = ac.textFields![0] as UITextField

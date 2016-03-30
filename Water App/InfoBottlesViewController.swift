@@ -10,10 +10,17 @@ import UIKit
 
 class InfoBottlesViewController: UIViewController {
 
+    @IBOutlet weak var bottleName: UILabel!
+    var bottleName1 = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        bottleName.text = bottleName1
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
     }
 
     override func didReceiveMemoryWarning() {
