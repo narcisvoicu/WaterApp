@@ -11,6 +11,18 @@ import UIKit
 class AddBottlesViewController: UIViewController {
 
     @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var bottleNameTf: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var addPhotoBtn: UIButton!
+    @IBAction func addPhotoAction(sender: UIButton) {
+        
+    }
+    @IBOutlet weak var reviewTv: UITextView!
+    @IBOutlet weak var addBottleBtn: UIButton!
+    @IBAction func addBottleAction(sender: UIButton) {
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

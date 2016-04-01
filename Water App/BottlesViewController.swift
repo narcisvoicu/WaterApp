@@ -58,6 +58,8 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         } else {
             cell.textLabel?.text = bottles[indexPath.row] as! String
         }
+        
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
         return cell
     }

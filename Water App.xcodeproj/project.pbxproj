@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF97575D0DA44745E0FC9AA1 /* Pods_Water_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */; };
+		EC40BE811CAEA09E006AA121 /* WaterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40BE801CAEA09E006AA121 /* WaterItems.swift */; };
 		EC4B5CDC1C85C6D3001D43D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */; };
 		EC4B5CDE1C85C6D3001D43D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */; };
 		EC4B5CE01C85C6D3001D43D9 /* WaterSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CDF1C85C6D3001D43D9 /* WaterSourcesViewController.swift */; };
@@ -39,6 +40,7 @@
 		2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Water_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78654F255652256C0276D37B /* Pods-Water App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.debug.xcconfig"; sourceTree = "<group>"; };
 		DAE384D6342C497E087799E3 /* Pods-Water App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.release.xcconfig"; sourceTree = "<group>"; };
+		EC40BE801CAEA09E006AA121 /* WaterItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterItems.swift; sourceTree = "<group>"; };
 		EC4B5CD81C85C6D3001D43D9 /* Water App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Water App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				EC4B5CF31C85DA80001D43D9 /* Resources */,
 				EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */,
 				ECEEC0141C91BFA500C6EC52 /* DataService.swift */,
+				EC40BE801CAEA09E006AA121 /* WaterItems.swift */,
 				EC4B5CFC1C85E062001D43D9 /* TabBarController.swift */,
 				EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */,
 				ECE297A21C89CF4C00DE8294 /* SignInViewController.swift */,
@@ -297,6 +300,7 @@
 				EC4B5CDE1C85C6D3001D43D9 /* HomeViewController.swift in Sources */,
 				ECA0FD081C94BC2100BA922D /* AddSourcesViewController.swift in Sources */,
 				ECA0FD021C9492FB00BA922D /* AddedByMeViewController.swift in Sources */,
+				EC40BE811CAEA09E006AA121 /* WaterItems.swift in Sources */,
 				ECA0FD061C94BC1000BA922D /* AddBottlesViewController.swift in Sources */,
 				ECA0FD041C94930F00BA922D /* FavoritesViewController.swift in Sources */,
 				ECEEC0151C91BFA500C6EC52 /* DataService.swift in Sources */,

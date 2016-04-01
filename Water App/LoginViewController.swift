@@ -60,7 +60,7 @@ class LoginViewController: UIViewController{
             sendPassToEmailTf = ac.textFields![0] as UITextField
             
             
-            self.sendPassword()
+            DataService.dataService.rootRef.resetPasswordForUser(sendPassToEmailTf.text, withCompletionBlock: nil)
         }))
         
         
@@ -85,9 +85,7 @@ class LoginViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    func sendPassword() -> Void{
-        print("Password sent!")
-    }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)

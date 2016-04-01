@@ -17,9 +17,8 @@ class DataService {
     
     private var USER_REF = Firebase(url: "https://water-app.firebaseio.com/users")
     
-    private var SOURCES_DETAILS_REF = Firebase(url: "https://water-app.firebaseio.com/sourcesDetails")
+    private var WATER_ITEMS_REF = Firebase(url: "https://water-app.firebaseio.com/waterItems")
     
-    private var BOTTLES_DETAILS_REF = Firebase(url: "https://water-app.firebaseio.com/bottlesDetails")
     
     
     var rootRef: Firebase{
@@ -32,19 +31,17 @@ class DataService {
     
     var currentUserRef: Firebase{
         let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        print(userID)
+    
         let currentUser = Firebase(url: "\(rootRef)").childByAppendingPath("users").childByAppendingPath(userID)
         
         return currentUser
     }
     
-    var sourcesDetailsRef: Firebase{
-        return SOURCES_DETAILS_REF
+    var waterItemsRef: Firebase{
+        return WATER_ITEMS_REF
     }
     
-    var bottlesDetailsRef: Firebase{
-        return BOTTLES_DETAILS_REF
-    }
+    
     
     func createUser(uid: String, user: Dictionary<String, String>){
         userRef.childByAppendingPath(uid).setValue(user)
