@@ -10,6 +10,121 @@ import Foundation
 import Firebase
 
 
-//class WaterItems {
-//    <#properties and methods#>
-//}
+class Bottles {
+    private var KEY: String!
+    private var NAME: String!
+    private var IMAGE: UIImage!
+    
+    var key: String!{
+        return KEY
+    }
+    
+    var name: String!{
+        return NAME
+    }
+    
+    var image: UIImage!{
+        return IMAGE
+    }
+    
+    // Used for storing data to database
+    init(key: String, name: String, image: UIImage){
+        self.KEY = key
+        self.NAME = name
+        self.IMAGE = image
+    }
+    
+    // Used for retrieving data from database
+    init(snapshot: FDataSnapshot){
+        KEY = snapshot.key
+        NAME = snapshot.value["name"] as! String
+        IMAGE = snapshot.value["image"] as! UIImage
+    }
+    
+    func toAnyObject() -> AnyObject {
+        return [
+            "name": name,
+            "image": image,
+            
+        ]
+    }
+    
+}
+
+class Sources {
+    private var KEY: String!
+    private var NAME: String!
+    private var IMAGE: UIImage!
+
+    var key: String!{
+        return KEY
+    }
+    
+    var name: String!{
+        return NAME
+    }
+    
+    var image: UIImage!{
+        return IMAGE
+    }
+    
+    init(key: String, name: String, image: UIImage){
+        self.KEY = key
+        self.NAME = name
+        self.IMAGE = image
+    }
+    
+    init(snapshot: FDataSnapshot){
+        KEY = snapshot.key
+        NAME = snapshot.value["name"] as! String
+        IMAGE = snapshot.value["image"] as! UIImage
+    }
+    
+    func toAnyObject() -> AnyObject {
+        return [
+            "name": name,
+            "image": image,
+            
+        ]
+    }
+    
+}
+
+
+class Reviews {
+    private var KEY: String!
+    private var TEXT: String!
+    private var ADDEDBY: String!
+    
+    var key: String!{
+        return KEY
+    }
+    
+    var text: String!{
+        return TEXT
+    }
+    
+    var addedby: String!{
+        return ADDEDBY
+    }
+    
+    init(key: String, text: String, addedby: String){
+        self.KEY = key
+        self.TEXT = text
+        self.ADDEDBY = addedby
+    }
+    
+    init(snapshot: FDataSnapshot){
+        KEY = snapshot.key
+        TEXT = snapshot.value["text"] as! String
+        ADDEDBY = snapshot.value["addedBy"] as! String
+    }
+    
+    func toAnyObject() -> AnyObject {
+        return [
+            "text": text,
+            "addedBy": addedby,
+        ]
+    }
+    
+}
