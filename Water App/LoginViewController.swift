@@ -59,8 +59,23 @@ class LoginViewController: UIViewController{
         ac.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
             sendPassToEmailTf = ac.textFields![0] as UITextField
             
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+                DataService.dataService.rootRef.resetPasswordForUser(sendPassToEmailTf.text, withCompletionBlock: { (error) -> Void in
+                    if error == nil{
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            print("No error")
+                            self.loginErrorAlert(title: "Success!", message: "A mail with your new password was succesfully sent.")
+                        })
+                        
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            print("Error")
+                            self.loginErrorAlert(title: "Error!", message: "A error has occured while sending your new password. Try re-enter your email.")
+                        })
+                    }
+                })
+            })
             
-            DataService.dataService.rootRef.resetPasswordForUser(sendPassToEmailTf.text, withCompletionBlock: nil)
         }))
         
         

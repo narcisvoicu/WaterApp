@@ -34,8 +34,6 @@ class MyAccountViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
         
-//        let lvc = storyboard?.instantiateViewControllerWithIdentifier("NavVC")
-//        UIApplication.sharedApplication().keyWindow?.rootViewController = lvc
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -47,6 +45,8 @@ class MyAccountViewController: UIViewController {
         
         navItem.hidesBackButton = true
         
+        navItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "accountOptions")
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +56,10 @@ class MyAccountViewController: UIViewController {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    func accountOptions(){
+        print("settings")
     }
     
 
