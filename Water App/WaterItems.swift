@@ -60,6 +60,7 @@ class Bottles {
         ADDEDBY = snapshot.value["addedBy"] as! String
     }
     
+    
 //    func toAnyObject() -> AnyObject {
 //        return [
 //            "name": name,

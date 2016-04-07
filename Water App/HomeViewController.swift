@@ -16,10 +16,6 @@ class HomeViewController: UIViewController, UIBarPositioningDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        print(NSUserDefaults.standardUserDefaults().valueForKey("uid"))
-       // navItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: nil)
-        //navBar.barTintColor = UIColor(red: 0/255, green: 210/255, blue: 255/255, alpha: 1.0)
-       
     }
 
     override func didReceiveMemoryWarning() {

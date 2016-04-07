@@ -34,6 +34,7 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
             
             
             for item in snapshot.children{
+                
                 let bottles = Bottles(snapshot: item as! FDataSnapshot)
                 let addedByCurrentUser = bottles.addedBy
                 if self.currentUser == addedByCurrentUser{

@@ -13,7 +13,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
     
     
     var bottleName = [String]()
-    var bottles = [Bottles]()
+    //var bottles = [Bottles]()
     var filteredBottles = [String]()
     var showResults = false
     var i: Int = 0
@@ -36,12 +36,12 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         
         bottleRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
             
-            var newBottles = [Bottles]()
+            //var newBottles = [Bottles]()
             
             for item in snapshot.children {
  
                 let bottle = Bottles(snapshot: item as! FDataSnapshot)
-                newBottles.append(bottle)
+                //newBottles.append(bottle)
                 
                 self.bottleName.append(bottle.name)
                 
@@ -49,7 +49,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
                 
             }
         
-            self.bottles = newBottles
+            //self.bottles = newBottles
             self.tableView.reloadData()
 
             }) { (error) -> Void in
@@ -72,7 +72,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         if showResults == true && searchController.searchBar.text != ""{
             return filteredBottles.count
         } else {
-            return bottles.count
+            return bottleName.count
         }
     
     }
@@ -98,7 +98,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        print(bottles[indexPath.row])
+        print(bottleName[indexPath.row])
     }
 
     

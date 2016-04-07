@@ -26,7 +26,26 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                 print(error.description)
         }
         
-    
+        let bottleFavoritesRef = DataService.dataService.currentUserRef.childByAppendingPath("favorites").childByAppendingPath("bottles")
+        bottleFavoritesRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
+            
+            for item in snapshot.children{
+
+                self.favorites.append(item.value!!["name"] as! String)
+                
+                print(self.favorites)
+                
+                //self.favorites.append(favoriteBottles.name)
+                
+                //print("Favorite bottles: \(self.favorites)")
+                
+            }
+            
+            self.tableView.reloadData()
+            
+            }) { (error) -> Void in
+                print(error.description)
+        }
         
     }
     
