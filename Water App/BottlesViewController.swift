@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Firebase
 
 class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
     
     
-    var bottles = [String]()
+    var bottleName = [String]()
+    var bottles = [Bottles]()
     var filteredBottles = [String]()
     var showResults = false
+    var i: Int = 0
     
     var searchController: UISearchController!
     @IBOutlet weak var tableView: UITableView!
@@ -25,14 +28,42 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        bottles = ["Bucovina", "Dorna", "Perla Harghitei"]
-        
         configureSearchController()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addItems")
         
+        let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
+        
+        
+        bottleRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            
+            var newBottles = [Bottles]()
+            
+            for item in snapshot.children {
+ 
+                let bottle = Bottles(snapshot: item as! FDataSnapshot)
+                newBottles.append(bottle)
+                
+                self.bottleName.append(bottle.name)
+                
+               
+                print("Bottle name: \(self.bottleName)")
+                
+            }
+        
+            self.bottles = newBottles
+            self.tableView.reloadData()
+
+            }) { (error) -> Void in
+                print(error.description)
+        }
+        
     }
 
+    override func viewWillAppear(animated: Bool) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -56,7 +87,8 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         if showResults == true && searchController.searchBar.text != ""{
             cell.textLabel?.text = filteredBottles[indexPath.row]
         } else {
-            cell.textLabel?.text = bottles[indexPath.row] as! String
+            
+            cell.textLabel?.text = bottleName[indexPath.row] as String
         }
         
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -122,7 +154,9 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchData = searchController.searchBar.text
-        filteredBottles = bottles.filter({ (bottle) -> Bool in
+        
+        
+        filteredBottles = bottleName.filter({ (bottle) -> Bool in
             return bottle.lowercaseString.containsString((searchData?.lowercaseString)!)
         })
         
@@ -140,7 +174,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         if segue.identifier == "bottleDetails"{
             if let infoBottle = segue.destinationViewController as? InfoBottlesViewController{
                 if let bottleIndex = tableView.indexPathForSelectedRow?.row {
-                    infoBottle.bottleName1 = bottles[bottleIndex]
+                    infoBottle.bottleName1 = bottleName[bottleIndex] as! String
                     
                 }
             }

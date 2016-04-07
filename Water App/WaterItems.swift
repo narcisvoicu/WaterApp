@@ -28,25 +28,41 @@ class Bottles {
     }
     
     // Used for storing data to database
-    init(key: String, name: String, image: UIImage){
+    
+//    init(name: String, image: UIImage){
+//        self.KEY = key
+//        self.NAME = name
+//        self.IMAGE = image
+//    }
+    
+    init(name: String){
         self.KEY = key
         self.NAME = name
-        self.IMAGE = image
     }
     
     // Used for retrieving data from database
+    
+//    init(snapshot: FDataSnapshot){
+//        KEY = snapshot.key
+//        NAME = snapshot.value["name"] as! String
+//        IMAGE = snapshot.value["image"] as! UIImage
+//    }
+    
     init(snapshot: FDataSnapshot){
         KEY = snapshot.key
         NAME = snapshot.value["name"] as! String
-        IMAGE = snapshot.value["image"] as! UIImage
     }
     
+//    func toAnyObject() -> AnyObject {
+//        return [
+//            "name": name,
+//            "image": image,
+//            
+//        ]
+//    }
+    
     func toAnyObject() -> AnyObject {
-        return [
-            "name": name,
-            "image": image,
-            
-        ]
+        return ["name": name]
     }
     
 }

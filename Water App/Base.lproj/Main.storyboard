@@ -286,19 +286,6 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Review:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlx-rR-KYD">
-                                                <rect key="frame" x="8" y="288" width="59" height="23"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QwR-OZ-PI2">
-                                                <rect key="frame" x="8" y="319" width="584" height="128"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -459,12 +446,6 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Review:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ftm-d9-mBk">
-                                                <rect key="frame" x="20" y="280" width="59" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJO-vz-LYK">
                                                 <rect key="frame" x="20" y="242" width="72" height="30"/>
                                                 <constraints>
@@ -503,14 +484,7 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oL0-BX-Jmx">
-                                                <rect key="frame" x="20" y="309" width="560" height="128"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efN-MG-nSt">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efN-MG-nSt">
                                                 <rect key="frame" x="264" y="445" width="72" height="30"/>
                                                 <state key="normal" title="Add Bottle"/>
                                                 <connections>
@@ -521,25 +495,18 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Net-it-DQF" firstAttribute="leading" secondItem="IBs-6S-sKD" secondAttribute="leading" constant="20" id="4X2-4U-cfZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="oL0-BX-Jmx" secondAttribute="trailing" constant="20" id="61R-jL-FfL"/>
                                             <constraint firstItem="OHa-YZ-iO2" firstAttribute="leading" secondItem="IBs-6S-sKD" secondAttribute="leading" constant="20" id="BYI-9b-x9g"/>
                                             <constraint firstAttribute="trailing" secondItem="OHa-YZ-iO2" secondAttribute="trailing" constant="20" id="Cck-d3-GmO"/>
                                             <constraint firstItem="SbP-Aa-dvd" firstAttribute="top" secondItem="1EP-DM-R5n" secondAttribute="bottom" constant="8" id="G3c-Pa-bPi"/>
                                             <constraint firstItem="Net-it-DQF" firstAttribute="top" secondItem="SbP-Aa-dvd" secondAttribute="bottom" constant="8" id="GMt-fX-Ioh"/>
                                             <constraint firstItem="SbP-Aa-dvd" firstAttribute="leading" secondItem="IBs-6S-sKD" secondAttribute="leading" constant="20" id="Maj-wL-n8P"/>
-                                            <constraint firstItem="Ftm-d9-mBk" firstAttribute="top" secondItem="GJO-vz-LYK" secondAttribute="bottom" constant="8" id="Rt0-E9-j6v"/>
-                                            <constraint firstItem="oL0-BX-Jmx" firstAttribute="leading" secondItem="IBs-6S-sKD" secondAttribute="leading" constant="20" id="SSW-7E-uwL"/>
-                                            <constraint firstItem="oL0-BX-Jmx" firstAttribute="top" secondItem="Ftm-d9-mBk" secondAttribute="bottom" constant="8" id="ayT-sR-EtS"/>
                                             <constraint firstItem="GJO-vz-LYK" firstAttribute="leading" secondItem="IBs-6S-sKD" secondAttribute="leading" constant="20" id="d1Z-CB-AUd"/>
-                                            <constraint firstItem="efN-MG-nSt" firstAttribute="top" secondItem="oL0-BX-Jmx" secondAttribute="bottom" constant="8" id="fT5-T8-XzS"/>
                                             <constraint firstItem="1EP-DM-R5n" firstAttribute="leading" secondItem="IBs-6S-sKD" secondAttribute="leading" constant="20" id="gZ2-8Y-2qs"/>
                                             <constraint firstItem="OHa-YZ-iO2" firstAttribute="top" secondItem="Net-it-DQF" secondAttribute="bottom" constant="8" id="hoY-Bi-ccB"/>
                                             <constraint firstItem="GJO-vz-LYK" firstAttribute="top" secondItem="OHa-YZ-iO2" secondAttribute="bottom" constant="8" id="j02-vq-6Ex"/>
                                             <constraint firstItem="1EP-DM-R5n" firstAttribute="top" secondItem="IBs-6S-sKD" secondAttribute="top" constant="8" id="nli-BS-GAE"/>
                                             <constraint firstAttribute="trailing" secondItem="SbP-Aa-dvd" secondAttribute="trailing" constant="20" id="pF5-ra-NmV"/>
-                                            <constraint firstAttribute="bottom" secondItem="oL0-BX-Jmx" secondAttribute="bottom" constant="50" id="q5S-36-Pcm"/>
                                             <constraint firstAttribute="height" constant="600" id="vYU-dJ-bDF"/>
-                                            <constraint firstItem="Ftm-d9-mBk" firstAttribute="leading" secondItem="IBs-6S-sKD" secondAttribute="leading" constant="20" id="yz0-9x-iyH"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -567,7 +534,6 @@
                         <outlet property="addPhotoBtn" destination="GJO-vz-LYK" id="vH2-KH-jkr"/>
                         <outlet property="bottleNameTf" destination="SbP-Aa-dvd" id="0A4-Au-vbL"/>
                         <outlet property="collectionView" destination="OHa-YZ-iO2" id="OhV-na-Jyt"/>
-                        <outlet property="reviewTv" destination="oL0-BX-Jmx" id="uFe-ng-kcW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNi-Nt-60w" userLabel="First Responder" sceneMemberID="firstResponder"/>

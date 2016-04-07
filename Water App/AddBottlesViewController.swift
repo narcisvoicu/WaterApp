@@ -17,10 +17,21 @@ class AddBottlesViewController: UIViewController {
     @IBAction func addPhotoAction(sender: UIButton) {
         
     }
-    @IBOutlet weak var reviewTv: UITextView!
+    
     @IBOutlet weak var addBottleBtn: UIButton!
     @IBAction func addBottleAction(sender: UIButton) {
-        
+        if bottleNameTf.text == ""{
+            
+            addAlert(title: "Ooops!", message: "Please enter a name for your bottle")
+            
+           
+        } else {
+            let bottle = Bottles(name: bottleNameTf.text!)
+            let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
+            let bottleNameRef = bottleRef.childByAppendingPath(bottleNameTf.text?.lowercaseString)
+            bottleNameRef.setValue(bottle.toAnyObject())
+            addAlert(title: "Success!", message: "You have succesfully added a bottle item.")
+        }
     }
     
     
@@ -37,6 +48,11 @@ class AddBottlesViewController: UIViewController {
     }
     
    
+    func addAlert(title title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
+    }
     
 
     /*
