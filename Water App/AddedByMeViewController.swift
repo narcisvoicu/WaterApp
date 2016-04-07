@@ -7,16 +7,49 @@
 //
 
 import UIKit
+import Firebase
 
 class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    var addedbyme = [String]()
+    
+    var currentUser: String!
+    var itemsAddedByCurrentUser = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        DataService.dataService.currentUserRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            let user = snapshot.value.objectForKey("email")
+            self.currentUser = user as! String
+            }) { (error) -> Void in
+                print(error.description)
+        }
+        
+        
+        let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
+        
+        bottleRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            
+            
+            
+            for item in snapshot.children{
+                let bottles = Bottles(snapshot: item as! FDataSnapshot)
+                let addedByCurrentUser = bottles.addedBy
+                if self.currentUser == addedByCurrentUser{
+                    self.itemsAddedByCurrentUser.append(bottles.name)
+                    
+                    print("Items added by current user: \(self.itemsAddedByCurrentUser)")
+                    
+                } else {
+                    self.itemsAddedByCurrentUser = ["None"]
+                }
+                self.tableView.reloadData()
+            }
+            
+            }) { (error) -> Void in
+                print(error.description)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,14 +58,14 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return addedbyme.count
+        return itemsAddedByCurrentUser.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
-        cell.textLabel?.text = addedbyme[indexPath.row]
+        cell.textLabel?.text = itemsAddedByCurrentUser[indexPath.row]
         
         return cell
     }

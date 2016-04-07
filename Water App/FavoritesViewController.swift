@@ -7,16 +7,31 @@
 //
 
 import UIKit
+import Firebase
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var favorites = [String]()
     
+    var favorites = [String]()
+    var currentUser: String!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        DataService.dataService.currentUserRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            let user = snapshot.value.objectForKey("email")
+            self.currentUser = user as! String
+            }) { (error) -> Void in
+                print(error.description)
+        }
+        
+    
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

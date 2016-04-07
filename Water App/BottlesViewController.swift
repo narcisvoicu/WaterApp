@@ -34,7 +34,6 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         
         let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
         
-        
         bottleRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
             
             var newBottles = [Bottles]()
@@ -46,7 +45,6 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
                 
                 self.bottleName.append(bottle.name)
                 
-               
                 print("Bottle name: \(self.bottleName)")
                 
             }

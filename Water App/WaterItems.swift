@@ -14,6 +14,7 @@ class Bottles {
     private var KEY: String!
     private var NAME: String!
     private var IMAGE: UIImage!
+    private var ADDEDBY: String!
     
     var key: String!{
         return KEY
@@ -27,6 +28,10 @@ class Bottles {
         return IMAGE
     }
     
+    var addedBy: String!{
+        return ADDEDBY
+    }
+    
     // Used for storing data to database
     
 //    init(name: String, image: UIImage){
@@ -35,9 +40,10 @@ class Bottles {
 //        self.IMAGE = image
 //    }
     
-    init(name: String){
+    init(name: String, addedBy: String){
         self.KEY = key
         self.NAME = name
+        self.ADDEDBY = addedBy
     }
     
     // Used for retrieving data from database
@@ -51,6 +57,7 @@ class Bottles {
     init(snapshot: FDataSnapshot){
         KEY = snapshot.key
         NAME = snapshot.value["name"] as! String
+        ADDEDBY = snapshot.value["addedBy"] as! String
     }
     
 //    func toAnyObject() -> AnyObject {
@@ -62,7 +69,8 @@ class Bottles {
 //    }
     
     func toAnyObject() -> AnyObject {
-        return ["name": name]
+        return ["name": name,
+                "addedBy": addedBy]
     }
     
 }

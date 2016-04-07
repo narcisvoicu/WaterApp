@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AddBottlesViewController: UIViewController {
 
@@ -26,7 +27,7 @@ class AddBottlesViewController: UIViewController {
             
            
         } else {
-            let bottle = Bottles(name: bottleNameTf.text!)
+            let bottle = Bottles(name: bottleNameTf.text!, addedBy: currentUser)
             let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
             let bottleNameRef = bottleRef.childByAppendingPath(bottleNameTf.text?.lowercaseString)
             bottleNameRef.setValue(bottle.toAnyObject())
@@ -34,11 +35,19 @@ class AddBottlesViewController: UIViewController {
         }
     }
     
+    var currentUser: String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
+            let user = snapshot.value.objectForKey("email") as! String
+            self.currentUser = user
+            }) { (error) -> Void in
+                print(error.description)
+        }
 
     }
 
