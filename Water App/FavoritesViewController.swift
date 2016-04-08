@@ -30,14 +30,15 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         bottleFavoritesRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
             
             for item in snapshot.children{
-
-                self.favorites.append(item.value!!["name"] as! String)
+                
+                let favoriteName = item.value!!["name"] as! String
+                
+                self.favorites.append(favoriteName)
+                
+                // eliminate duplicate from array by transforming to set
+                self.favorites = Array(Set(self.favorites))
                 
                 print(self.favorites)
-                
-                //self.favorites.append(favoriteBottles.name)
-                
-                //print("Favorite bottles: \(self.favorites)")
                 
             }
             

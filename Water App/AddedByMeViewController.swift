@@ -31,11 +31,12 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
         
         bottleRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
             
-            
-            
             for item in snapshot.children{
                 
                 let bottles = Bottles(snapshot: item as! FDataSnapshot)
+                
+                print("Bottles snapshot: \(bottles)")
+                
                 let addedByCurrentUser = bottles.addedBy
                 if self.currentUser == addedByCurrentUser{
                     self.itemsAddedByCurrentUser.append(bottles.name)

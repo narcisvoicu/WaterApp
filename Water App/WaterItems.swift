@@ -93,8 +93,7 @@ class Sources {
         return IMAGE
     }
     
-    init(key: String, name: String, image: UIImage){
-        self.KEY = key
+    init(name: String, image: UIImage){
         self.NAME = name
         self.IMAGE = image
     }
@@ -120,6 +119,7 @@ class Reviews {
     private var KEY: String!
     private var TEXT: String!
     private var ADDEDBY: String!
+    private var ADDEDTO: String!
     
     var key: String!{
         return KEY
@@ -133,22 +133,28 @@ class Reviews {
         return ADDEDBY
     }
     
-    init(key: String, text: String, addedby: String){
-        self.KEY = key
+    var addedto: String!{
+        return ADDEDTO
+    }
+    
+    init(text: String, addedby: String, addedto: String){
         self.TEXT = text
         self.ADDEDBY = addedby
+        self.ADDEDTO = addedto
     }
     
     init(snapshot: FDataSnapshot){
         KEY = snapshot.key
         TEXT = snapshot.value["text"] as! String
         ADDEDBY = snapshot.value["addedBy"] as! String
+        ADDEDTO = snapshot.value["addedTo"] as! String
     }
     
     func toAnyObject() -> AnyObject {
         return [
             "text": text,
             "addedBy": addedby,
+            "addedTo": addedto
         ]
     }
     
