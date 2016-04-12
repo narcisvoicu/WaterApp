@@ -11,10 +11,13 @@ import Firebase
 
 class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottlesTableView: UITableView!
+    @IBOutlet weak var sourcesTableView: UITableView!
+    
     
     var currentUser: String!
     var itemsAddedByCurrentUser = [String]()
+    var sourcesAddedByCurrentUser = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,32 +29,40 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
                 print(error.description)
         }
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         
         let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
         
         bottleRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
             
+            var newItems = [String]()
+            
             for item in snapshot.children{
-                
+           
                 let bottles = Bottles(snapshot: item as! FDataSnapshot)
                 
-                print("Bottles snapshot: \(bottles)")
-                
                 let addedByCurrentUser = bottles.addedBy
+                
                 if self.currentUser == addedByCurrentUser{
-                    self.itemsAddedByCurrentUser.append(bottles.name)
-                    
-                    print("Items added by current user: \(self.itemsAddedByCurrentUser)")
-                    
+                    newItems.append(bottles.name)
                 } else {
                     self.itemsAddedByCurrentUser = ["None"]
                 }
-                self.tableView.reloadData()
+      
             }
+            
+            self.itemsAddedByCurrentUser = newItems
+            self.bottlesTableView.reloadData()
             
             }) { (error) -> Void in
                 print(error.description)
         }
+        
+        sourcesAddedByCurrentUser = ["None"]
+        sourcesTableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,14 +71,40 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemsAddedByCurrentUser.count
+        
+        if tableView == sourcesTableView{
+            print("sources added: \(sourcesAddedByCurrentUser.count)")
+            return sourcesAddedByCurrentUser.count
+        } else if tableView == bottlesTableView{
+            return itemsAddedByCurrentUser.count
+        } else {
+            return 0
+        }
+
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
-        cell.textLabel?.text = itemsAddedByCurrentUser[indexPath.row]
+        var cell = UITableViewCell()
+        
+        
+        if tableView == sourcesTableView {
+            cell = tableView.dequeueReusableCellWithIdentifier("sourcesCell")! as UITableViewCell
+            
+            print("Sources added by current user: \(sourcesAddedByCurrentUser)")
+            
+            cell.textLabel?.text = sourcesAddedByCurrentUser[indexPath.row]
+            
+            return cell
+            
+        } else if tableView == bottlesTableView {
+            
+            cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
+
+            cell.textLabel?.text = itemsAddedByCurrentUser[indexPath.row]
+            
+        }
         
         return cell
     }

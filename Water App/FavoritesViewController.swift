@@ -11,9 +11,12 @@ import Firebase
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottlesTableView: UITableView!
+    @IBOutlet weak var sourcesTableView: UITableView!
     
     var favorites = [String]()
+    var favoriteSources = [String]()
+    
     var currentUser: String!
    
     override func viewDidLoad() {
@@ -29,20 +32,18 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         let bottleFavoritesRef = DataService.dataService.currentUserRef.childByAppendingPath("favorites").childByAppendingPath("bottles")
         bottleFavoritesRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
             
+            var newItems = [String]()
+            
             for item in snapshot.children{
-                
+
                 let favoriteName = item.value!!["name"] as! String
                 
-                self.favorites.append(favoriteName)
-                
-                // eliminate duplicate from array by transforming to set
-                self.favorites = Array(Set(self.favorites))
-                
-                print(self.favorites)
+                newItems.append(favoriteName)
                 
             }
             
-            self.tableView.reloadData()
+            self.favorites = newItems
+            self.bottlesTableView.reloadData()
             
             }) { (error) -> Void in
                 print(error.description)
@@ -51,20 +52,42 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewDidAppear(animated: Bool) {
-        
+        favoriteSources = ["None"]
+        sourcesTableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favorites.count
+        if tableView == bottlesTableView{
+            return favorites.count
+        } else {
+            print("NUmar randuri sources: \(favoriteSources.count)")
+            return favoriteSources.count
+        }
+        
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
-        cell.textLabel?.text = favorites[indexPath.row]
+        var cell = UITableViewCell()
+        
+        if tableView == sourcesTableView{
+            
+            print("sunt in sources")
+            cell = tableView.dequeueReusableCellWithIdentifier("sourcesCell")! as UITableViewCell
+            cell.textLabel?.text = favoriteSources[indexPath.row]
+            
+        } else {
+            
+            cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
+            cell.textLabel?.text = favorites[indexPath.row]
+            
+        }
+        
+        
         
         return cell
+        
     }
 
     override func didReceiveMemoryWarning() {
