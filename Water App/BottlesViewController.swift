@@ -36,20 +36,17 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         
         bottleRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
             
-            //var newBottles = [Bottles]()
+            var newBottles = [String]()
             
             for item in snapshot.children {
  
                 let bottle = Bottles(snapshot: item as! FDataSnapshot)
-                //newBottles.append(bottle)
                 
-                self.bottleName.append(bottle.name)
-                
-                print("Bottle name: \(self.bottleName)")
+                newBottles.append(bottle.name)
                 
             }
         
-            //self.bottles = newBottles
+            self.bottleName = newBottles
             self.tableView.reloadData()
 
             }) { (error) -> Void in

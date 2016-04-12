@@ -18,9 +18,7 @@ class InfoBottlesViewController: UIViewController {
         super.viewDidLoad()
         bottleName.text = bottleName1
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: "addToFavorites")
-        
-        
-        
+
     }
     
     override func viewWillAppear(animated: Bool) {
