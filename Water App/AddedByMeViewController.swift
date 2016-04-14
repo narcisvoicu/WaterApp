@@ -97,9 +97,10 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         if tableView == sourcesTableView{
+            
             cell = tableView.dequeueReusableCellWithIdentifier("sourcesCell")! as UITableViewCell
             
-            print("Sources added by current user: \(sourcesAddedByCurrentUser)")
+            
             
             
             cell.textLabel?.text = sourcesAddedByCurrentUser[indexPath.row]
