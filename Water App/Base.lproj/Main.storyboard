@@ -732,6 +732,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwV-Jx-UEC">
                                 <rect key="frame" x="500" y="281" width="80" height="30"/>
                                 <state key="normal" title="Add Review"/>
+                                <connections>
+                                    <action selector="addReviewAction:" destination="S4C-zn-5FP" eventType="touchUpInside" id="cem-2b-ccM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -843,8 +846,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottlesTableView" destination="Y2Q-u9-Icm" id="vRJ-xT-SOY"/>
                         <outlet property="sourcesTableView" destination="Ahl-sL-QgD" id="Je9-LU-byv"/>
-                        <outlet property="tableView" destination="Y2Q-u9-Icm" id="Vp6-kJ-BGf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvL-TX-JD0" userLabel="First Responder" sceneMemberID="firstResponder"/>

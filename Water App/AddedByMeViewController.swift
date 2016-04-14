@@ -29,9 +29,6 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
                 print(error.description)
         }
         
-        sourcesTableView.dataSource = self
-        sourcesTableView.delegate = self
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -46,14 +43,10 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
            
                 let bottles = Bottles(snapshot: item as! FDataSnapshot)
                 
-                print("Bottles snapshot: \(bottles)")
-                
                 let addedByCurrentUser = bottles.addedBy
+                
                 if self.currentUser == addedByCurrentUser{
                     newItems.append(bottles.name)
-                    
-                    print("Items added by current user: \(self.itemsAddedByCurrentUser)")
-                    
                 } else {
                     self.itemsAddedByCurrentUser = ["None"]
                 }
@@ -67,9 +60,8 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
                 print(error.description)
         }
         
-        
-            sourcesAddedByCurrentUser = ["None"]
-        
+        sourcesAddedByCurrentUser = ["None"]
+        sourcesTableView.reloadData()
         
     }
 
@@ -81,6 +73,7 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView == sourcesTableView{
+            print("sources added: \(sourcesAddedByCurrentUser.count)")
             return sourcesAddedByCurrentUser.count
         } else if tableView == bottlesTableView{
             return itemsAddedByCurrentUser.count
@@ -96,10 +89,8 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
         var cell = UITableViewCell()
         
         
-        if tableView == sourcesTableView{
-            
+        if tableView == sourcesTableView {
             cell = tableView.dequeueReusableCellWithIdentifier("sourcesCell")! as UITableViewCell
-            
             
             
             
@@ -110,8 +101,6 @@ class AddedByMeViewController: UIViewController, UITableViewDataSource, UITableV
         } else if tableView == bottlesTableView {
             
             cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
-            
-            print("ceva")
 
             cell.textLabel?.text = itemsAddedByCurrentUser[indexPath.row]
             

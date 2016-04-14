@@ -11,7 +11,7 @@ import Firebase
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottlesTableView: UITableView!
     @IBOutlet weak var sourcesTableView: UITableView!
     
     var favorites = [String]()
@@ -43,7 +43,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
             self.favorites = newItems
-            self.tableView.reloadData()
+            self.bottlesTableView.reloadData()
             
             }) { (error) -> Void in
                 print(error.description)
@@ -52,11 +52,12 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewDidAppear(animated: Bool) {
-        
+        favoriteSources = ["None"]
+        sourcesTableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == tableView{
+        if tableView == bottlesTableView{
             return favorites.count
         } else {
             return favoriteSources.count
@@ -67,18 +68,23 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        if tableView == tableView{
-            let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
-            cell.textLabel?.text = favorites[indexPath.row]
-            
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("sourcesCell")! as UITableViewCell
+        var cell = UITableViewCell()
+        
+        if tableView == sourcesTableView{
+
+            cell = tableView.dequeueReusableCellWithIdentifier("sourcesCell")! as UITableViewCell
             cell.textLabel?.text = favoriteSources[indexPath.row]
             
-            return cell
+        } else {
+            
+            cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
+            cell.textLabel?.text = favorites[indexPath.row]
+            
         }
         
+        
+        
+        return cell
         
     }
 
