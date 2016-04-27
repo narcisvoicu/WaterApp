@@ -9,15 +9,19 @@
 import UIKit
 import Firebase
 
-class AddBottlesViewController: UIViewController {
+class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var bottleNameTf: UITextField!
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
     @IBOutlet weak var addPhotoBtn: UIButton!
     @IBAction func addPhotoAction(sender: UIButton) {
         
     }
+    
+    var images: UIImage!
     
     @IBOutlet weak var addBottleBtn: UIButton!
     @IBAction func addBottleAction(sender: UIButton) {
@@ -56,12 +60,22 @@ class AddBottlesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return 5
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+        let cell: UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImagesCell
+        
+        return cell
+    }
    
     func addAlert(title title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         presentViewController(alert, animated: true, completion: nil)
     }
+    
     
 
     /*

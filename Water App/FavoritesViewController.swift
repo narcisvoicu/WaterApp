@@ -60,7 +60,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         if tableView == bottlesTableView{
             return favorites.count
         } else {
-            print("NUmar randuri sources: \(favoriteSources.count)")
             return favoriteSources.count
         }
         
@@ -72,8 +71,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         var cell = UITableViewCell()
         
         if tableView == sourcesTableView{
-            
-            print("sunt in sources")
+
             cell = tableView.dequeueReusableCellWithIdentifier("sourcesCell")! as UITableViewCell
             cell.textLabel?.text = favoriteSources[indexPath.row]
             

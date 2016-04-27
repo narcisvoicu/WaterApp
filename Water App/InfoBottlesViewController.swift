@@ -14,11 +14,74 @@ class InfoBottlesViewController: UIViewController {
     @IBOutlet weak var bottleName: UILabel!
     var bottleName1 = String()
     
+    var currentUser = String()
+    
+    var i = 1
+    
+    var alertView: UIView!
+    var blurEffect: UIBlurEffect!
+    var blurEffectView: UIVisualEffectView!
+    var titleLabel: UILabel!
+    var reviewText: UITextView!
+    var addReviewButton: UIButton!
+    
+    @IBAction func addReviewAction(sender: UIButton) {
+        
+        
+        
+        blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.bounds
+        
+        alertView = UIView(frame: CGRect(x: self.view.center.x - 130, y: self.view.center.y - 200, width: 260, height: 380))
+        alertView.backgroundColor = UIColor.whiteColor()
+        alertView.layer.cornerRadius = 10
+        alertView.layer.borderWidth = 2
+        
+        titleLabel = UILabel(frame: CGRect(x: self.view.center.x - 115, y: self.view.center.y - 190, width: 230, height: 30))
+        titleLabel.text = "Enter your review below:"
+        
+        reviewText = UITextView(frame: CGRect(x: self.view.center.x - 115, y: self.view.center.y - 150, width: 230, height: 100))
+        
+        
+        addReviewButton = UIButton(frame: CGRect(x: 0, y: self.view.center.y - 40, width: 100, height: 30))
+        addReviewButton.center.x = view.center.x
+        addReviewButton.setTitle("Add Review", forState: UIControlState.Normal)
+        addReviewButton.addTarget(self, action: "addReviewToFirebase", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        
+        showPopupDateExtrase()
+    }
+    
+    func addReviewToFirebase(){
+        let review = Reviews(text: "", addedby: currentUser, addedto: (bottleName.text?.lowercaseString)!)
+        let reviewRef = DataService.dataService.rootRef.childByAppendingPath("reviews")
+        let bottleRevRef = reviewRef.childByAppendingPath(bottleName.text?.lowercaseString).childByAppendingPath("review \(i)")
+        bottleRevRef.setValue(review.toAnyObject())
+        dismissPopUpDateExtrase()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bottleName.text = bottleName1
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: "addToFavorites")
 
+        DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
+            let user = snapshot.value.objectForKey("email") as! String
+            self.currentUser = user
+            }) { (error) -> Void in
+                print(error.description)
+        }
+
+        DataService.dataService.rootRef.childByAppendingPath("reviews").childByAppendingPath(bottleName.text?.lowercaseString).observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
+            for item in snapshot.children{
+                self.i++
+                print("Print: \(self.i)")
+            }
+            }) { (error) -> Void in
+                print(error.description)
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -49,6 +112,57 @@ class InfoBottlesViewController: UIViewController {
     }
     
     
+    // MARK: - Functii pentru efectele alertview-ului
+    
+    func uiElementsAlphaZero(){
+        blurEffectView.alpha = 0
+        alertView.alpha = 0
+        titleLabel.alpha = 0
+        reviewText.alpha = 0
+        addReviewButton.alpha = 0
+    }
+    
+    func uiElementsAlphaOne(){
+        blurEffectView.alpha = 1
+        alertView.alpha = 1
+        titleLabel.alpha = 1
+        reviewText.alpha = 1
+        addReviewButton.alpha = 1
+    }
+    
+    func uiElementsRemoveFromSuperview(){
+        blurEffectView.removeFromSuperview()
+        alertView.removeFromSuperview()
+        titleLabel.removeFromSuperview()
+        reviewText.removeFromSuperview()
+        addReviewButton.removeFromSuperview()
+    }
+    
+    func uiElementsAddSubview(){
+        view.addSubview(blurEffectView)
+        view.addSubview(alertView)
+        view.addSubview(titleLabel)
+        view.addSubview(reviewText)
+        view.addSubview(addReviewButton)
+    }
+    
+    func showPopupDateExtrase(){
+        uiElementsAlphaZero()
+        uiElementsAddSubview()
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.uiElementsAlphaOne()
+        }
+    }
+    
+    func dismissPopUpDateExtrase(){
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.uiElementsAlphaZero()
+            
+            }) { (Bool) -> Void in
+                self.uiElementsRemoveFromSuperview()
+        }
+    }
+
     
     /*
     // MARK: - Navigation

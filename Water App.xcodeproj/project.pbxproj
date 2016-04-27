@@ -26,6 +26,7 @@
 		ECA0FD081C94BC2100BA922D /* AddSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */; };
 		ECA0FD0A1C94BC3900BA922D /* InfoBottlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */; };
 		ECA0FD0C1C94BC4B00BA922D /* InfoSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */; };
+		ECB3A2901CCBB234000F96C5 /* ImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A28F1CCBB234000F96C5 /* ImagesCell.swift */; };
 		ECC1471C1C8CD956006E2009 /* 3883517_orig.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC1471B1C8CD956006E2009 /* 3883517_orig.png */; };
 		ECC1471E1C8CDA4C006E2009 /* Contacts Filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC1471D1C8CDA4C006E2009 /* Contacts Filled@2x.png */; };
 		ECC147201C8CDADF006E2009 /* Home Filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECC1471F1C8CDADF006E2009 /* Home Filled@2x.png */; };
@@ -60,6 +61,7 @@
 		ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSourcesViewController.swift; sourceTree = "<group>"; };
 		ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoBottlesViewController.swift; sourceTree = "<group>"; };
 		ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoSourcesViewController.swift; sourceTree = "<group>"; };
+		ECB3A28F1CCBB234000F96C5 /* ImagesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesCell.swift; sourceTree = "<group>"; };
 		ECC1471B1C8CD956006E2009 /* 3883517_orig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3883517_orig.png; sourceTree = "<group>"; };
 		ECC1471D1C8CDA4C006E2009 /* Contacts Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contacts Filled@2x.png"; sourceTree = "<group>"; };
 		ECC1471F1C8CDADF006E2009 /* Home Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home Filled@2x.png"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				EC932D4E1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift */,
 				EC4B5CE11C85C6D3001D43D9 /* Main.storyboard */,
 				ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */,
+				ECB3A28F1CCBB234000F96C5 /* ImagesCell.swift */,
 				ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */,
 				ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */,
 				ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */,
@@ -290,6 +293,7 @@
 				EC51BFB81C88889D0042357D /* LoginViewController.swift in Sources */,
 				EC4B5CE01C85C6D3001D43D9 /* WaterSourcesViewController.swift in Sources */,
 				EC4B5CDC1C85C6D3001D43D9 /* AppDelegate.swift in Sources */,
+				ECB3A2901CCBB234000F96C5 /* ImagesCell.swift in Sources */,
 				EC4B5CF21C85D710001D43D9 /* MyAccountViewController.swift in Sources */,
 				ECE297A31C89CF4C00DE8294 /* SignInViewController.swift in Sources */,
 				EC932D4F1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift in Sources */,

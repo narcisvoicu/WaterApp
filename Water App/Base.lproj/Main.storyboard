@@ -473,16 +473,35 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nZk-ob-vaY">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="nZk-ob-vaY" customClass="ImagesCell" customModule="Water_App" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="115" height="125"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                             <rect key="frame" x="0.0" y="0.0" width="115" height="125"/>
                                                             <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l3I-T5-gUn">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="127"/>
+                                                                </imageView>
+                                                            </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstItem="l3I-T5-gUn" firstAttribute="leading" secondItem="nZk-ob-vaY" secondAttribute="leadingMargin" constant="-8" id="BaU-LK-jVI"/>
+                                                            <constraint firstItem="l3I-T5-gUn" firstAttribute="top" secondItem="nZk-ob-vaY" secondAttribute="topMargin" constant="-8" id="Hei-U9-blH"/>
+                                                            <constraint firstAttribute="trailingMargin" secondItem="l3I-T5-gUn" secondAttribute="trailing" constant="-8" id="ZYK-P0-Zgb"/>
+                                                            <constraint firstAttribute="bottomMargin" secondItem="l3I-T5-gUn" secondAttribute="bottom" constant="-10" id="xWk-DA-7r0"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="imageView" destination="l3I-T5-gUn" id="3Zi-Hf-npQ"/>
+                                                        </connections>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="Gei-4o-nyi" id="arr-Bl-MAl"/>
+                                                    <outlet property="delegate" destination="Gei-4o-nyi" id="Ogd-by-doq"/>
+                                                </connections>
                                             </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efN-MG-nSt">
                                                 <rect key="frame" x="264" y="445" width="72" height="30"/>
@@ -534,7 +553,7 @@
                         <outlet property="addBottleBtn" destination="efN-MG-nSt" id="NgN-rw-mhK"/>
                         <outlet property="addPhotoBtn" destination="GJO-vz-LYK" id="vH2-KH-jkr"/>
                         <outlet property="bottleNameTf" destination="SbP-Aa-dvd" id="0A4-Au-vbL"/>
-                        <outlet property="collectionView" destination="OHa-YZ-iO2" id="OhV-na-Jyt"/>
+                        <outlet property="collectionView" destination="OHa-YZ-iO2" id="sXt-VE-Ksy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNi-Nt-60w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -724,6 +743,11 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="115" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wpN-Iw-8rz">
+                                                    <rect key="frame" x="-63" y="0.0" width="178" height="127"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </collectionViewCell>
@@ -732,6 +756,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwV-Jx-UEC">
                                 <rect key="frame" x="500" y="281" width="80" height="30"/>
                                 <state key="normal" title="Add Review"/>
+                                <connections>
+                                    <action selector="addReviewAction:" destination="S4C-zn-5FP" eventType="touchUpInside" id="cem-2b-ccM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
