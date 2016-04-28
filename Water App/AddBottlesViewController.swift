@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var bottleNameTf: UITextField!
@@ -18,16 +18,17 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBOutlet weak var addPhotoBtn: UIButton!
     @IBAction func addPhotoAction(sender: UIButton) {
-        
+        addImages()
     }
     
-    var images: UIImage!
+    var bottlesImages = [BottlesImages]()
+    var base64String: NSString!
     
     @IBOutlet weak var addBottleBtn: UIButton!
     @IBAction func addBottleAction(sender: UIButton) {
-        if bottleNameTf.text == ""{
+        if bottleNameTf.text == "" || bottlesImages.count == 0{
             
-            addAlert(title: "Ooops!", message: "Please enter a name for your bottle")
+            addAlert(title: "Ooops!", message: "Please enter a name or an image for your bottle")
             
            
         } else {
@@ -46,6 +47,7 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         super.viewDidLoad()
 
         
+        
         DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
             let user = snapshot.value.objectForKey("email") as! String
             self.currentUser = user
@@ -61,11 +63,17 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return 5
+        return bottlesImages.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImagesCell
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImagesCell
+        
+        let images = bottlesImages[indexPath.item]
+        
+        let path = getDocumentsDirectory().stringByAppendingPathComponent(images.image)
+        cell.imageView.image = UIImage(contentsOfFile: path)
         
         return cell
     }
@@ -76,8 +84,60 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    func addImages(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        presentViewController(picker, animated: true, completion: nil)
+    }
     
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        var newImage: UIImage
+        
+        if let possibleImage = info[UIImagePickerControllerEditedImage]{
+            newImage = possibleImage as! UIImage
+        } else if let possibleImage = info[UIImagePickerControllerOriginalImage]{
+            newImage = possibleImage as! UIImage
+        } else {
+            return
+        }
+        
+        let imageName = NSUUID().UUIDString
+        
+        let imagePath = getDocumentsDirectory().stringByAppendingPathComponent(imageName)
+        
+        if let jpegData = UIImageJPEGRepresentation(newImage, 80){
+             jpegData.writeToFile(imagePath, atomically: true)
+        }
+       
+        
+        
+        let images = BottlesImages(image: imageName)
+        bottlesImages.append(images)
+        collectionView.reloadData()
+        
+        print(bottlesImages)
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    
+    }
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+        
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
 
+    func imageToBase64(){
+        var uploadImage = bottlesImages[0] as! UIImage
+        let imageData: NSData = UIImagePNGRepresentation(uploadImage)!
+        base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+        
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -87,5 +147,5 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

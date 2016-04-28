@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF97575D0DA44745E0FC9AA1 /* Pods_Water_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */; };
+		EC326C1C1CD239D100CD39E1 /* BottlesImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC326C1B1CD239D100CD39E1 /* BottlesImages.swift */; };
 		EC40BE811CAEA09E006AA121 /* WaterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40BE801CAEA09E006AA121 /* WaterItems.swift */; };
 		EC4B5CDC1C85C6D3001D43D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */; };
 		EC4B5CDE1C85C6D3001D43D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */; };
@@ -41,6 +42,7 @@
 		2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Water_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78654F255652256C0276D37B /* Pods-Water App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.debug.xcconfig"; sourceTree = "<group>"; };
 		DAE384D6342C497E087799E3 /* Pods-Water App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.release.xcconfig"; sourceTree = "<group>"; };
+		EC326C1B1CD239D100CD39E1 /* BottlesImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottlesImages.swift; sourceTree = "<group>"; };
 		EC40BE801CAEA09E006AA121 /* WaterItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterItems.swift; sourceTree = "<group>"; };
 		EC4B5CD81C85C6D3001D43D9 /* Water App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Water App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				EC4B5CE11C85C6D3001D43D9 /* Main.storyboard */,
 				ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */,
 				ECB3A28F1CCBB234000F96C5 /* ImagesCell.swift */,
+				EC326C1B1CD239D100CD39E1 /* BottlesImages.swift */,
 				ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */,
 				ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */,
 				ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */,
@@ -297,6 +300,7 @@
 				EC4B5CF21C85D710001D43D9 /* MyAccountViewController.swift in Sources */,
 				ECE297A31C89CF4C00DE8294 /* SignInViewController.swift in Sources */,
 				EC932D4F1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift in Sources */,
+				EC326C1C1CD239D100CD39E1 /* BottlesImages.swift in Sources */,
 				EC4B5CFD1C85E062001D43D9 /* TabBarController.swift in Sources */,
 				EC4B5CF01C85D6FF001D43D9 /* BottlesViewController.swift in Sources */,
 				ECA0FD0A1C94BC3900BA922D /* InfoBottlesViewController.swift in Sources */,
