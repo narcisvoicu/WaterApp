@@ -33,13 +33,7 @@ class Bottles {
     }
     
     // Used for storing data to database
-    
-//    init(name: String, image: UIImage){
-//        self.KEY = key
-//        self.NAME = name
-//        self.IMAGE = image
-//    }
-    
+        
     init(name: String, addedBy: String){
         self.KEY = key
         self.NAME = name
@@ -48,26 +42,12 @@ class Bottles {
     
     // Used for retrieving data from database
     
-//    init(snapshot: FDataSnapshot){
-//        KEY = snapshot.key
-//        NAME = snapshot.value["name"] as! String
-//        IMAGE = snapshot.value["image"] as! UIImage
-//    }
-    
     init(snapshot: FDataSnapshot){
         KEY = snapshot.key
         NAME = snapshot.value["name"] as! String
         ADDEDBY = snapshot.value["addedBy"] as! String
     }
     
-    
-//    func toAnyObject() -> AnyObject {
-//        return [
-//            "name": name,
-//            "image": image,
-//            
-//        ]
-//    }
     
     func toAnyObject() -> AnyObject {
         return ["name": name,

@@ -8,21 +8,36 @@
 
 import UIKit
 import Firebase
+import MobileCoreServices
 
 class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    // MARK: - Global variables - Outlets
+    
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var bottleNameTf: UITextField!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    // MARK: - Global variables - Add photo button (action and outlet)
+    
     @IBOutlet weak var addPhotoBtn: UIButton!
     @IBAction func addPhotoAction(sender: UIButton) {
-        addImages()
+        
+        let alert = UIAlertController(title: "Add Image", message: "Choose the source of the image", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alert.addAction(UIAlertAction(title: "Take a photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            self.openCamera()
+        }))
+        alert.addAction(UIAlertAction(title: "Select image from albums", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            self.addImages()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        presentViewController(alert, animated: true, completion: nil)
     }
     
-    var bottlesImages = [BottlesImages]()
-    var base64String: NSString!
+    
+    // MARK: - Global variables - Add photo button (action and outlet)
     
     @IBOutlet weak var addBottleBtn: UIButton!
     @IBAction func addBottleAction(sender: UIButton) {
@@ -35,18 +50,34 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
             let bottle = Bottles(name: bottleNameTf.text!, addedBy: currentUser)
             let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
             let bottleNameRef = bottleRef.childByAppendingPath(bottleNameTf.text?.lowercaseString)
+            
+            
+            imageToBase64()
+            let imageStringRef = ["base64string": base64String]
+            let imagesRef = bottleNameRef.childByAppendingPath("images")
+            let imageDictionary = ["image": imageStringRef]
+            
+            
             bottleNameRef.setValue(bottle.toAnyObject())
+            imagesRef.setValue(imageDictionary)
+            
             addAlert(title: "Success!", message: "You have succesfully added a bottle item.")
         }
     }
     
+    // MARK: - Global variables - Others
+    
+    var bottlesImages = [BottlesImages]()
+    var base64String: NSString!
+    var base64StringArray = [NSString]()
     var currentUser: String!
     
     
+    
+    // MARK: - Methods - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
         
         DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
             let user = snapshot.value.objectForKey("email") as! String
@@ -62,6 +93,8 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Methods - Collection View
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return bottlesImages.count
     }
@@ -74,9 +107,11 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         
         let path = getDocumentsDirectory().stringByAppendingPathComponent(images.image)
         cell.imageView.image = UIImage(contentsOfFile: path)
-        
+        print(cell.imageView.image)
         return cell
     }
+    
+    // MARK: - Methods - Add alert
    
     func addAlert(title title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -84,11 +119,25 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    // MARK: - Methods - Images methods
+    
     func addImages(){
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
         presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func openCamera(){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType =
+                UIImagePickerControllerSourceType.Camera
+            picker.mediaTypes = [kUTTypeImage  as String]
+            picker.allowsEditing = true
+            presentViewController(picker, animated: true, completion: nil)
+        }
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -111,7 +160,6 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         }
        
         
-        
         let images = BottlesImages(image: imageName)
         bottlesImages.append(images)
         collectionView.reloadData()
@@ -130,11 +178,29 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
-
+    
     func imageToBase64(){
-        var uploadImage = bottlesImages[0] as! UIImage
-        let imageData: NSData = UIImagePNGRepresentation(uploadImage)!
-        base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+        
+        
+        for i in 0..<bottlesImages.count{
+            let bottleImageString = bottlesImages[i].image
+            
+            let data: NSData = bottleImageString.dataUsingEncoding(NSUTF8StringEncoding)!
+            base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+            
+            base64StringArray.append(base64String)
+            
+            print("Base64 String: \(base64StringArray)")
+        }
+        
+        
+        
+//        let uploadImage: UIImage = UIImage(contentsOfFile: bottleImageString)!
+//        
+//        print("Upload image:\(uploadImage)")
+//        
+//        let imageData: NSData = UIImagePNGRepresentation(uploadImage)!
+//        base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
         
     }
     
