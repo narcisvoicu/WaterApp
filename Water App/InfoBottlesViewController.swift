@@ -27,8 +27,6 @@ class InfoBottlesViewController: UIViewController {
     
     @IBAction func addReviewAction(sender: UIButton) {
         
-        
-        
         blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.view.bounds
@@ -37,20 +35,23 @@ class InfoBottlesViewController: UIViewController {
         alertView.backgroundColor = UIColor.whiteColor()
         alertView.layer.cornerRadius = 10
         alertView.layer.borderWidth = 2
+        alertView.layer.borderColor = view.tintColor.CGColor
         
         titleLabel = UILabel(frame: CGRect(x: self.view.center.x - 115, y: self.view.center.y - 190, width: 230, height: 30))
         titleLabel.text = "Enter your review below:"
         
         reviewText = UITextView(frame: CGRect(x: self.view.center.x - 115, y: self.view.center.y - 150, width: 230, height: 100))
+        reviewText.layer.borderWidth = 1
+        reviewText.layer.borderColor = UIColor.blackColor().CGColor
         
         
         addReviewButton = UIButton(frame: CGRect(x: 0, y: self.view.center.y - 40, width: 100, height: 30))
         addReviewButton.center.x = view.center.x
         addReviewButton.setTitle("Add Review", forState: UIControlState.Normal)
-        addReviewButton.addTarget(self, action: "addReviewToFirebase", forControlEvents: UIControlEvents.TouchUpInside)
+        addReviewButton.addTarget(self, action: #selector(InfoBottlesViewController.addReviewToFirebase), forControlEvents: UIControlEvents.TouchUpInside)
         
         
-        showPopupDateExtrase()
+        showReviewPopup()
     }
     
     func addReviewToFirebase(){
@@ -58,13 +59,13 @@ class InfoBottlesViewController: UIViewController {
         let reviewRef = DataService.dataService.rootRef.childByAppendingPath("reviews")
         let bottleRevRef = reviewRef.childByAppendingPath(bottleName.text?.lowercaseString).childByAppendingPath("review \(i)")
         bottleRevRef.setValue(review.toAnyObject())
-        dismissPopUpDateExtrase()
+        dismissReviewPopup()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bottleName.text = bottleName1
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: "addToFavorites")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(InfoBottlesViewController.addToFavorites))
 
         DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
             let user = snapshot.value.objectForKey("email") as! String
@@ -74,8 +75,8 @@ class InfoBottlesViewController: UIViewController {
         }
 
         DataService.dataService.rootRef.childByAppendingPath("reviews").childByAppendingPath(bottleName.text?.lowercaseString).observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
-            for item in snapshot.children{
-                self.i++
+            for _ in snapshot.children{
+                self.i += 1
                 print("Print: \(self.i)")
             }
             }) { (error) -> Void in
@@ -146,7 +147,7 @@ class InfoBottlesViewController: UIViewController {
         view.addSubview(addReviewButton)
     }
     
-    func showPopupDateExtrase(){
+    func showReviewPopup(){
         uiElementsAlphaZero()
         uiElementsAddSubview()
         UIView.animateWithDuration(0.5) { () -> Void in
@@ -154,7 +155,7 @@ class InfoBottlesViewController: UIViewController {
         }
     }
     
-    func dismissPopUpDateExtrase(){
+    func dismissReviewPopup(){
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.uiElementsAlphaZero()
             
