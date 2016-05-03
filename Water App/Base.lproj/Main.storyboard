@@ -737,7 +737,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fKK-nU-hlW">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="fKK-nU-hlW" customClass="ImagesCell" customModule="Water_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="115" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -752,6 +752,10 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="S4C-zn-5FP" id="gJ7-XE-4qp"/>
+                                    <outlet property="delegate" destination="S4C-zn-5FP" id="PRt-Kn-1iY"/>
+                                </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwV-Jx-UEC">
                                 <rect key="frame" x="500" y="281" width="80" height="30"/>
@@ -784,6 +788,7 @@
                     <navigationItem key="navigationItem" title="Bottles Info" id="d3e-Aa-ALL"/>
                     <connections>
                         <outlet property="bottleName" destination="2hh-lr-1Ah" id="sov-9Y-PG3"/>
+                        <outlet property="collectionView" destination="PUm-p5-bCX" id="ybB-nf-hdH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSj-IG-ToA" userLabel="First Responder" sceneMemberID="firstResponder"/>

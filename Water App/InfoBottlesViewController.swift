@@ -9,21 +9,14 @@
 import UIKit
 import Firebase
 
-class InfoBottlesViewController: UIViewController {
+class InfoBottlesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    // MARK: - Global variables - Outlets
+    
     @IBOutlet weak var bottleName: UILabel!
-    var bottleName1 = String()
-    
-    var currentUser = String()
-    
-    var i = 1
-    
-    var alertView: UIView!
-    var blurEffect: UIBlurEffect!
-    var blurEffectView: UIVisualEffectView!
-    var titleLabel: UILabel!
-    var reviewText: UITextView!
-    var addReviewButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
+
+    // MARK: - Global variables - Add review button (action and outlet)
     
     @IBAction func addReviewAction(sender: UIButton) {
         
@@ -54,17 +47,29 @@ class InfoBottlesViewController: UIViewController {
         showReviewPopup()
     }
     
-    func addReviewToFirebase(){
-        let review = Reviews(text: "", addedby: currentUser, addedto: (bottleName.text?.lowercaseString)!)
-        let reviewRef = DataService.dataService.rootRef.childByAppendingPath("reviews")
-        let bottleRevRef = reviewRef.childByAppendingPath(bottleName.text?.lowercaseString).childByAppendingPath("review \(i)")
-        bottleRevRef.setValue(review.toAnyObject())
-        dismissReviewPopup()
-    }
+    
+    // MARK: - Global variables - Others
+    
+    var alertView: UIView!
+    var blurEffect: UIBlurEffect!
+    var blurEffectView: UIVisualEffectView!
+    var titleLabel: UILabel!
+    var reviewText: UITextView!
+    var addReviewButton: UIButton!
+    var bottleName1 = String()
+    var currentUser = String()
+    var i = 1
+    
+    var imageBase64String = String()
+    var bottlesImages = [String]()
+    
+    // MARK: - Methods - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         bottleName.text = bottleName1
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(InfoBottlesViewController.addToFavorites))
 
         DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
@@ -73,7 +78,23 @@ class InfoBottlesViewController: UIViewController {
             }) { (error) -> Void in
                 print(error.description)
         }
+        
+        let imageBottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles").childByAppendingPath(bottleName.text!.lowercaseString).childByAppendingPath("images").childByAppendingPath("image").childByAppendingPath("base64string")
+        
 
+        imageBottleRef.observeEventType(FEventType.Value, withBlock: { snapshot in
+            self.imageBase64String = snapshot.value as! String
+//            let decodedData = NSData(base64EncodedString: self.imageBase64String, options: NSDataBase64DecodingOptions())
+//            let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding)
+//            self.bottlesImages.append(decodedString! as String)
+            self.bottlesImages.append(self.imageBase64String)
+            self.collectionView.reloadData()
+            print(">>>\(self.bottlesImages)")
+            
+            }) { (error) in
+                print(error.description)
+        }
+        
         DataService.dataService.rootRef.childByAppendingPath("reviews").childByAppendingPath(bottleName.text?.lowercaseString).observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
             for _ in snapshot.children{
                 self.i += 1
@@ -94,6 +115,14 @@ class InfoBottlesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func addReviewToFirebase(){
+        let review = Reviews(text: "", addedby: currentUser, addedto: (bottleName.text?.lowercaseString)!)
+        let reviewRef = DataService.dataService.rootRef.childByAppendingPath("reviews")
+        let bottleRevRef = reviewRef.childByAppendingPath(bottleName.text?.lowercaseString).childByAppendingPath("review \(i)")
+        bottleRevRef.setValue(review.toAnyObject())
+        dismissReviewPopup()
+    }
+    
     func addToFavorites(){
         print("Added to favorites")
         
@@ -106,6 +135,41 @@ class InfoBottlesViewController: UIViewController {
         
     }
     
+    // MARK: - Methods - Collection View
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return bottlesImages.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImagesCell
+        
+        let images = bottlesImages[indexPath.item]
+        
+        
+        
+        let decodedData = NSData(base64EncodedString: imageBase64String as String, options: NSDataBase64DecodingOptions())
+        
+        print(">>>>\(imageBase64String)")
+        
+        let decodedImage = UIImage(data: decodedData!)
+        
+        print("data: \(decodedImage)")
+        
+        cell.imageView.image = decodedImage
+        
+        return cell
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    // MARK: - Methods - Add alert
+    
     func addAlert(title title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -113,7 +177,7 @@ class InfoBottlesViewController: UIViewController {
     }
     
     
-    // MARK: - Functii pentru efectele alertview-ului
+    // MARK: - Methods - Popup methods
     
     func uiElementsAlphaZero(){
         blurEffectView.alpha = 0

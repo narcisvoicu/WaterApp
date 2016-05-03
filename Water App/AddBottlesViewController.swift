@@ -180,8 +180,6 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func imageToBase64(){
-        
-        
         for i in 0..<bottlesImages.count{
             let bottleImageString = bottlesImages[i].image
             
