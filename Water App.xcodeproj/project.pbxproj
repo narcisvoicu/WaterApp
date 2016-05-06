@@ -43,7 +43,7 @@
 		78654F255652256C0276D37B /* Pods-Water App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.debug.xcconfig"; sourceTree = "<group>"; };
 		DAE384D6342C497E087799E3 /* Pods-Water App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.release.xcconfig"; sourceTree = "<group>"; };
 		EC326C1B1CD239D100CD39E1 /* BottlesImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottlesImages.swift; sourceTree = "<group>"; };
-		EC40BE801CAEA09E006AA121 /* WaterItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterItems.swift; sourceTree = "<group>"; };
+		EC40BE801CAEA09E006AA121 /* WaterItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WaterItems.swift; path = "Water App/WaterItems.swift"; sourceTree = "<group>"; };
 		EC4B5CD81C85C6D3001D43D9 /* Water App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Water App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		ECC147231C8CDBE4006E2009 /* Fire Hydrant Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fire Hydrant Filled@2x.png"; sourceTree = "<group>"; };
 		ECC147251C8CDCD5006E2009 /* Plumbing Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plumbing Filled@2x.png"; sourceTree = "<group>"; };
 		ECE297A21C89CF4C00DE8294 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		ECEEC0141C91BFA500C6EC52 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		ECEEC0141C91BFA500C6EC52 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataService.swift; path = "Water App/DataService.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,10 +124,10 @@
 		EC4B5CDA1C85C6D3001D43D9 /* Water App */ = {
 			isa = PBXGroup;
 			children = (
+				ECEDFA961CDC9FBC001A453D /* Collection View */,
+				ECEDFA951CDC9F9E001A453D /* FIrebase */,
 				EC4B5CF31C85DA80001D43D9 /* Resources */,
 				EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */,
-				ECEEC0141C91BFA500C6EC52 /* DataService.swift */,
-				EC40BE801CAEA09E006AA121 /* WaterItems.swift */,
 				EC4B5CFC1C85E062001D43D9 /* TabBarController.swift */,
 				EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */,
 				ECE297A21C89CF4C00DE8294 /* SignInViewController.swift */,
@@ -140,8 +140,6 @@
 				EC932D4E1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift */,
 				EC4B5CE11C85C6D3001D43D9 /* Main.storyboard */,
 				ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */,
-				ECB3A28F1CCBB234000F96C5 /* ImagesCell.swift */,
-				EC326C1B1CD239D100CD39E1 /* BottlesImages.swift */,
 				ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */,
 				ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */,
 				ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */,
@@ -163,6 +161,25 @@
 				ECC147251C8CDCD5006E2009 /* Plumbing Filled@2x.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		ECEDFA951CDC9F9E001A453D /* FIrebase */ = {
+			isa = PBXGroup;
+			children = (
+				ECEEC0141C91BFA500C6EC52 /* DataService.swift */,
+				EC40BE801CAEA09E006AA121 /* WaterItems.swift */,
+			);
+			name = FIrebase;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		ECEDFA961CDC9FBC001A453D /* Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				ECB3A28F1CCBB234000F96C5 /* ImagesCell.swift */,
+				EC326C1B1CD239D100CD39E1 /* BottlesImages.swift */,
+			);
+			name = "Collection View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

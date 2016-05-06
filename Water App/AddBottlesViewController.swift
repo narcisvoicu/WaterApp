@@ -12,6 +12,7 @@ import MobileCoreServices
 
 class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
     // MARK: - Global variables - Outlets
     
     @IBOutlet weak var navItem: UINavigationItem!
@@ -73,7 +74,6 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
     var currentUser: String!
     
     
-    
     // MARK: - Methods - viewDidLoad
     
     override func viewDidLoad() {
@@ -97,6 +97,7 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return bottlesImages.count
+        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
@@ -107,7 +108,7 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         
         let path = getDocumentsDirectory().stringByAppendingPathComponent(images.image)
         cell.imageView.image = UIImage(contentsOfFile: path)
-        print(cell.imageView.image)
+
         return cell
     }
     
@@ -183,22 +184,19 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         for i in 0..<bottlesImages.count{
             let bottleImageString = bottlesImages[i].image
             
-            let data: NSData = bottleImageString.dataUsingEncoding(NSUTF8StringEncoding)!
-            base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+            let path = getDocumentsDirectory().stringByAppendingPathComponent(bottleImageString)
+            let image = UIImage(contentsOfFile: path)
+            
+            //let data: NSData = bottleImageString.dataUsingEncoding(NSUTF32StringEncoding)!
+            
+            let data: NSData = UIImagePNGRepresentation(image!)!
+            
+            base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
             
             base64StringArray.append(base64String)
             
-            print("Base64 String: \(base64StringArray)")
+           
         }
-        
-        
-        
-//        let uploadImage: UIImage = UIImage(contentsOfFile: bottleImageString)!
-//        
-//        print("Upload image:\(uploadImage)")
-//        
-//        let imageData: NSData = UIImagePNGRepresentation(uploadImage)!
-//        base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
         
     }
     

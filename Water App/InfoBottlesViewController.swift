@@ -42,11 +42,10 @@ class InfoBottlesViewController: UIViewController, UICollectionViewDelegate, UIC
         addReviewButton.center.x = view.center.x
         addReviewButton.setTitle("Add Review", forState: UIControlState.Normal)
         addReviewButton.addTarget(self, action: #selector(InfoBottlesViewController.addReviewToFirebase), forControlEvents: UIControlEvents.TouchUpInside)
-        
+       
         
         showReviewPopup()
     }
-    
     
     // MARK: - Global variables - Others
     
@@ -69,9 +68,11 @@ class InfoBottlesViewController: UIViewController, UICollectionViewDelegate, UIC
         super.viewDidLoad()
         
         bottleName.text = bottleName1
-        
+  
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(InfoBottlesViewController.addToFavorites))
 
+      
+        
         DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
             let user = snapshot.value.objectForKey("email") as! String
             self.currentUser = user
@@ -84,18 +85,14 @@ class InfoBottlesViewController: UIViewController, UICollectionViewDelegate, UIC
 
         imageBottleRef.observeEventType(FEventType.Value, withBlock: { snapshot in
             self.imageBase64String = snapshot.value as! String
-//            let decodedData = NSData(base64EncodedString: self.imageBase64String, options: NSDataBase64DecodingOptions())
-//            let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding)
-//            self.bottlesImages.append(decodedString! as String)
             self.bottlesImages.append(self.imageBase64String)
+
             self.collectionView.reloadData()
-            print(">>>\(self.bottlesImages)")
             
             }) { (error) in
                 print(error.description)
         }
-        
-        DataService.dataService.rootRef.childByAppendingPath("reviews").childByAppendingPath(bottleName.text?.lowercaseString).observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
+     DataService.dataService.rootRef.childByAppendingPath("reviews").childByAppendingPath(bottleName.text?.lowercaseString).observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
             for _ in snapshot.children{
                 self.i += 1
                 print("Print: \(self.i)")
@@ -139,24 +136,19 @@ class InfoBottlesViewController: UIViewController, UICollectionViewDelegate, UIC
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return bottlesImages.count
+       
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImagesCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("RetrieveImageCell", forIndexPath: indexPath) as! ImagesCell
         
         let images = bottlesImages[indexPath.item]
         
-        
-        
-        let decodedData = NSData(base64EncodedString: imageBase64String as String, options: NSDataBase64DecodingOptions())
-        
-        print(">>>>\(imageBase64String)")
+        let decodedData = NSData(base64EncodedString: images as String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         
         let decodedImage = UIImage(data: decodedData!)
-        
-        print("data: \(decodedImage)")
-        
+
         cell.imageView.image = decodedImage
         
         return cell
