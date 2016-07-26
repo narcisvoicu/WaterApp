@@ -73,12 +73,12 @@ class InfoBottlesViewController: UIViewController, UICollectionViewDelegate, UIC
 
       
         
-        DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
-            let user = snapshot.value.objectForKey("email") as! String
-            self.currentUser = user
-            }) { (error) -> Void in
-                print(error.description)
-        }
+//        DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
+//            let user = snapshot.value.objectForKey("email") as! String
+//            self.currentUser = user
+//            }) { (error) -> Void in
+//                print(error.description)
+//        }
         
         let imageBottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles").childByAppendingPath(bottleName.text!.lowercaseString).childByAppendingPath("images").childByAppendingPath("image").childByAppendingPath("base64string")
         

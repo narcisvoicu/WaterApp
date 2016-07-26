@@ -30,7 +30,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
 
         configureSearchController()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addItems")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(BottlesViewController.addItems))
         
         let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
         
@@ -82,7 +82,6 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         if showResults == true && searchController.searchBar.text != ""{
             cell.textLabel?.text = filteredBottles[indexPath.row]
         } else {
-            
             cell.textLabel?.text = bottleName[indexPath.row] as String
         }
         

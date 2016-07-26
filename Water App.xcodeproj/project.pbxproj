@@ -20,7 +20,6 @@
 		EC4B5CF21C85D710001D43D9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CF11C85D710001D43D9 /* MyAccountViewController.swift */; };
 		EC4B5CFD1C85E062001D43D9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CFC1C85E062001D43D9 /* TabBarController.swift */; };
 		EC51BFB81C88889D0042357D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BFB71C88889D0042357D /* LoginViewController.swift */; };
-		EC932D4F1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC932D4E1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift */; };
 		ECA0FD021C9492FB00BA922D /* AddedByMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD011C9492FB00BA922D /* AddedByMeViewController.swift */; };
 		ECA0FD041C94930F00BA922D /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD031C94930F00BA922D /* FavoritesViewController.swift */; };
 		ECA0FD061C94BC1000BA922D /* AddBottlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */; };
@@ -56,7 +55,6 @@
 		EC4B5CF11C85D710001D43D9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		EC4B5CFC1C85E062001D43D9 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		EC51BFB71C88889D0042357D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		EC932D4E1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		ECA0FD011C9492FB00BA922D /* AddedByMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedByMeViewController.swift; sourceTree = "<group>"; };
 		ECA0FD031C94930F00BA922D /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBottlesViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +101,55 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EC4456EC1D44D161000CE08D /* MyUser */ = {
+			isa = PBXGroup;
+			children = (
+				EC4B5CF11C85D710001D43D9 /* MyAccountViewController.swift */,
+				ECA0FD031C94930F00BA922D /* FavoritesViewController.swift */,
+				ECA0FD011C9492FB00BA922D /* AddedByMeViewController.swift */,
+			);
+			name = MyUser;
+			sourceTree = "<group>";
+		};
+		EC4456ED1D44D1AA000CE08D /* User Connection */ = {
+			isa = PBXGroup;
+			children = (
+				ECE297A21C89CF4C00DE8294 /* SignInViewController.swift */,
+				EC51BFB71C88889D0042357D /* LoginViewController.swift */,
+			);
+			name = "User Connection";
+			sourceTree = "<group>";
+		};
+		EC4456EE1D44D1DC000CE08D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */,
+				EC4B5CFC1C85E062001D43D9 /* TabBarController.swift */,
+				EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		EC4456EF1D44D2F4000CE08D /* Bottles */ = {
+			isa = PBXGroup;
+			children = (
+				EC4B5CEF1C85D6FF001D43D9 /* BottlesViewController.swift */,
+				ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */,
+				ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */,
+			);
+			name = Bottles;
+			sourceTree = "<group>";
+		};
+		EC4456F01D44D30F000CE08D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				EC4B5CDF1C85C6D3001D43D9 /* WaterSourcesViewController.swift */,
+				ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */,
+				ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
 		EC4B5CCF1C85C6D3001D43D9 = {
 			isa = PBXGroup;
 			children = (
@@ -125,24 +172,14 @@
 			isa = PBXGroup;
 			children = (
 				ECEDFA961CDC9FBC001A453D /* Collection View */,
-				ECEDFA951CDC9F9E001A453D /* FIrebase */,
+				ECEDFA951CDC9F9E001A453D /* Firebase */,
 				EC4B5CF31C85DA80001D43D9 /* Resources */,
-				EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */,
-				EC4B5CFC1C85E062001D43D9 /* TabBarController.swift */,
-				EC4B5CDD1C85C6D3001D43D9 /* HomeViewController.swift */,
-				ECE297A21C89CF4C00DE8294 /* SignInViewController.swift */,
-				EC51BFB71C88889D0042357D /* LoginViewController.swift */,
-				EC4B5CDF1C85C6D3001D43D9 /* WaterSourcesViewController.swift */,
-				EC4B5CEF1C85D6FF001D43D9 /* BottlesViewController.swift */,
-				EC4B5CF11C85D710001D43D9 /* MyAccountViewController.swift */,
-				ECA0FD031C94930F00BA922D /* FavoritesViewController.swift */,
-				ECA0FD011C9492FB00BA922D /* AddedByMeViewController.swift */,
-				EC932D4E1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift */,
+				EC4456EC1D44D161000CE08D /* MyUser */,
+				EC4456EE1D44D1DC000CE08D /* Main */,
+				EC4456ED1D44D1AA000CE08D /* User Connection */,
+				EC4456EF1D44D2F4000CE08D /* Bottles */,
+				EC4456F01D44D30F000CE08D /* Sources */,
 				EC4B5CE11C85C6D3001D43D9 /* Main.storyboard */,
-				ECA0FD051C94BC1000BA922D /* AddBottlesViewController.swift */,
-				ECA0FD071C94BC2100BA922D /* AddSourcesViewController.swift */,
-				ECA0FD091C94BC3900BA922D /* InfoBottlesViewController.swift */,
-				ECA0FD0B1C94BC4B00BA922D /* InfoSourcesViewController.swift */,
 				EC4B5CE41C85C6D3001D43D9 /* Assets.xcassets */,
 				EC4B5CE61C85C6D3001D43D9 /* LaunchScreen.storyboard */,
 				EC4B5CE91C85C6D3001D43D9 /* Info.plist */,
@@ -163,13 +200,13 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		ECEDFA951CDC9F9E001A453D /* FIrebase */ = {
+		ECEDFA951CDC9F9E001A453D /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
 				ECEEC0141C91BFA500C6EC52 /* DataService.swift */,
 				EC40BE801CAEA09E006AA121 /* WaterItems.swift */,
 			);
-			name = FIrebase;
+			name = Firebase;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -316,7 +353,6 @@
 				ECB3A2901CCBB234000F96C5 /* ImagesCell.swift in Sources */,
 				EC4B5CF21C85D710001D43D9 /* MyAccountViewController.swift in Sources */,
 				ECE297A31C89CF4C00DE8294 /* SignInViewController.swift in Sources */,
-				EC932D4F1C8C7DD00004D9A0 /* ForgotPasswordViewController.swift in Sources */,
 				EC326C1C1CD239D100CD39E1 /* BottlesImages.swift in Sources */,
 				EC4B5CFD1C85E062001D43D9 /* TabBarController.swift in Sources */,
 				EC4B5CF01C85D6FF001D43D9 /* BottlesViewController.swift in Sources */,

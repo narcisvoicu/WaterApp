@@ -48,7 +48,6 @@ class Bottles {
         ADDEDBY = snapshot.value["addedBy"] as! String
     }
     
-    
     func toAnyObject() -> AnyObject {
         return ["name": name,
                 "addedBy": addedBy]
@@ -60,6 +59,8 @@ class Sources {
     private var KEY: String!
     private var NAME: String!
     private var IMAGE: UIImage!
+    private var LATITUDE: String!
+    private var LONGITUDE: String!
 
     var key: String!{
         return KEY
@@ -73,21 +74,35 @@ class Sources {
         return IMAGE
     }
     
-    init(name: String, image: UIImage){
+    var latitude: String!{
+        return LATITUDE
+    }
+    
+    var longitude: String!{
+        return LONGITUDE
+    }
+    
+    init(name: String, image: UIImage, latitude: String, longitude: String){
         self.NAME = name
         self.IMAGE = image
+        self.LATITUDE = latitude
+        self.LONGITUDE = longitude
     }
     
     init(snapshot: FDataSnapshot){
         KEY = snapshot.key
         NAME = snapshot.value["name"] as! String
         IMAGE = snapshot.value["image"] as! UIImage
+        LATITUDE = snapshot.value["latitude"] as! String
+        LONGITUDE = snapshot.value["longitude"] as! String
     }
     
     func toAnyObject() -> AnyObject {
         return [
             "name": name,
             "image": image,
+            "latitude": latitude,
+            "longitude": longitude,
             
         ]
     }
