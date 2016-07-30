@@ -71,8 +71,6 @@ class InfoBottlesViewController: UIViewController, UICollectionViewDelegate, UIC
   
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add to Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(InfoBottlesViewController.addToFavorites))
 
-      
-        
 //        DataService.dataService.currentUserRef.observeEventType(FEventType.Value, withBlock: { (snapshot) -> Void in
 //            let user = snapshot.value.objectForKey("email") as! String
 //            self.currentUser = user

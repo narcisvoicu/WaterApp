@@ -11,7 +11,6 @@ import Firebase
 
 class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
     
-    
     var bottleName = [String]()
     //var bottles = [Bottles]()
     var filteredBottles = [String]()
@@ -37,15 +36,10 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         bottleRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
             
             var newBottles = [String]()
-            
             for item in snapshot.children {
- 
                 let bottle = Bottles(snapshot: item as! FDataSnapshot)
-                
                 newBottles.append(bottle.name)
-                
             }
-        
             self.bottleName = newBottles
             self.tableView.reloadData()
 
@@ -71,13 +65,11 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         } else {
             return bottleName.count
         }
-    
     }
-   
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        
-        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("bottle")!
+
+        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("bottle")!
         
         if showResults == true && searchController.searchBar.text != ""{
             cell.textLabel?.text = filteredBottles[indexPath.row]
@@ -91,25 +83,19 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
         print(bottleName[indexPath.row])
     }
-
     
     func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
         searchBar.endEditing(true)
         return true
     }
-    
    
     func addItems(){
         if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil && DataService.dataService.currentUserRef.authData != nil{
-            
             print("Add items action")
             performSegueWithIdentifier("addBottle", sender: nil)
-            
         } else {
             let ac = UIAlertController(title: "Alert!", message: "You must be logged in to add an item. Please login", preferredStyle: UIAlertControllerStyle.Alert)
             ac.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -148,8 +134,6 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchData = searchController.searchBar.text
-        
-        
         filteredBottles = bottleName.filter({ (bottle) -> Bool in
             return bottle.lowercaseString.containsString((searchData?.lowercaseString)!)
         })

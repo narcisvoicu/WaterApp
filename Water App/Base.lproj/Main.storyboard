@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ao6-kp-Zj8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ao6-kp-Zj8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -274,18 +274,31 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsl-kz-uRy">
                                                 <rect key="frame" x="260" y="473" width="80" height="30"/>
                                                 <state key="normal" title="Add Source"/>
+                                                <connections>
+                                                    <action selector="addSourceAction:" destination="6ln-vc-5MF" eventType="touchUpInside" id="Wr4-RA-GSw"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T69-xt-P4G">
                                                 <rect key="frame" x="8" y="89" width="584" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMn-Jh-296">
-                                                <rect key="frame" x="8" y="127" width="71" height="23"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWo-BI-nu0">
+                                                <rect key="frame" x="8" y="127" width="52" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPy-wH-YgU">
+                                                <rect key="frame" x="8" y="156" width="166" height="128"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMn-kt-hr4">
+                                                <rect key="frame" x="8" y="292" width="74" height="30"/>
+                                                <state key="normal" title="Add Image"/>
+                                                <connections>
+                                                    <action selector="addImageAction:" destination="6ln-vc-5MF" eventType="touchUpInside" id="seY-b1-YCA"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -312,6 +325,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Sources" id="C7X-Q4-7ci"/>
+                    <connections>
+                        <outlet property="addImageBtn" destination="FMn-kt-hr4" id="Equ-1V-3rh"/>
+                        <outlet property="addSourceBtn" destination="Vsl-kz-uRy" id="q4Z-7x-ptt"/>
+                        <outlet property="sourceImageView" destination="EPy-wH-YgU" id="wL5-J2-4iJ"/>
+                        <outlet property="sourceNameTf" destination="T69-xt-P4G" id="IFR-JE-fx1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apD-b4-MMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

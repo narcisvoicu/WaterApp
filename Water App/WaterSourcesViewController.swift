@@ -19,22 +19,17 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
             mapView.delegate = self
         }
     }
+    let annotation = MKPointAnnotation()
     
     @IBAction func dismissKeyboard(sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
-    
-    let locationManager = CLLocationManager()
-    let annotation = MKPointAnnotation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(WaterSourcesViewController.addItems))
-        
-        locationSetup()
-        
         
     }
 
@@ -43,8 +38,6 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         mapView.endEditing(true)
     }
@@ -52,8 +45,8 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
     
     func addItems(){
         
-        mapView.addAnnotation(annotation)
-        mapView.showAnnotations([annotation], animated: true)
+//        mapView.addAnnotation(annotation)
+//        mapView.showAnnotations([annotation], animated: true)
         
         if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil && DataService.dataService.currentUserRef.authData != nil {
             
@@ -66,33 +59,17 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
             presentViewController(ac, animated: true, completion: nil)
         }
     }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        print("viewForAnnotation")
+        return nil
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        print("didSelectAnnotationView")
+    }
 
-    // MARK: - Location Delegate Methods
-    
-    func locationSetup(){
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        
-        let center = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
-        
-        print("Coordinates: \(center)")
-        annotation.coordinate = center
-        
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
-        mapView.setRegion(region, animated: true)
-        locationManager.stopUpdatingLocation()
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("An error has occured: \(error.localizedDescription)")
-    }
+   
 
 }
 

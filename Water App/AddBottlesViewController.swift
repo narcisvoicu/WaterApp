@@ -12,12 +12,10 @@ import MobileCoreServices
 
 class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    
     // MARK: - Global variables - Outlets
     
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var bottleNameTf: UITextField!
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Global variables - Add photo button (action and outlet)
@@ -37,27 +35,21 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    
     // MARK: - Global variables - Add photo button (action and outlet)
     
     @IBOutlet weak var addBottleBtn: UIButton!
     @IBAction func addBottleAction(sender: UIButton) {
         if bottleNameTf.text == "" || bottlesImages.count == 0{
-            
             addAlert(title: "Ooops!", message: "Please enter a name or an image for your bottle")
-            
-           
         } else {
             let bottle = Bottles(name: bottleNameTf.text!, addedBy: currentUser)
             let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
             let bottleNameRef = bottleRef.childByAppendingPath(bottleNameTf.text?.lowercaseString)
             
-            
             imageToBase64()
             let imageStringRef = ["base64string": base64String]
             let imagesRef = bottleNameRef.childByAppendingPath("images")
             let imageDictionary = ["image": imageStringRef]
-            
             
             bottleNameRef.setValue(bottle.toAnyObject())
             imagesRef.setValue(imageDictionary)
@@ -72,7 +64,6 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
     var base64String: NSString!
     var base64StringArray = [NSString]()
     var currentUser: String!
-    
     
     // MARK: - Methods - viewDidLoad
     
@@ -159,7 +150,6 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         if let jpegData = UIImageJPEGRepresentation(newImage, 80){
              jpegData.writeToFile(imagePath, atomically: true)
         }
-       
         
         let images = BottlesImages(image: imageName)
         bottlesImages.append(images)
