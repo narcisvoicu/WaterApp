@@ -19,7 +19,8 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
             mapView.delegate = self
         }
     }
-    let annotation = MKPointAnnotation()
+
+    var sources: [Sources]!
     
     @IBAction func dismissKeyboard(sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -27,10 +28,24 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(WaterSourcesViewController.addItems))
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let sourceRef = DataService.dataService.rootRef.childByAppendingPath("sources")
+        sourceRef.observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            var newSources = [Sources]()
+            for item in snapshot.children {
+                let source = Sources(snapshot: item as! FDataSnapshot)
+                newSources.append(source)
+            }
+            self.sources = newSources
+            self.setupAnnotations()
+            print("Sources: \(self.sources)")
+        }) { (error) -> Void in
+            print(error.description)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,15 +59,8 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
     
     
     func addItems(){
-        
-//        mapView.addAnnotation(annotation)
-//        mapView.showAnnotations([annotation], animated: true)
-        
         if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil && DataService.dataService.currentUserRef.authData != nil {
-            
-            print("Add items action")
             performSegueWithIdentifier("addSource", sender: nil)
-            
         } else {
             let ac = UIAlertController(title: "Alert!", message: "You must be logged in to add an item. Please login", preferredStyle: UIAlertControllerStyle.Alert)
             ac.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -68,8 +76,22 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         print("didSelectAnnotationView")
     }
-
-   
+    
+    
+    func setupAnnotations(){
+        var allAnnotations = [MKPointAnnotation]()
+        for i in 0 ..< sources.count{
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: sources[i].latitude, longitude: sources[i].longitude)
+            annotation.title = sources[i].name
+            print("Annotation: \(annotation)")
+            print("Annotation latitude: \(annotation.coordinate.latitude)")
+            mapView.addAnnotation(annotation)
+            allAnnotations.append(annotation)
+            
+        }
+        mapView.showAnnotations(allAnnotations, animated: true)
+    }
 
 }
 

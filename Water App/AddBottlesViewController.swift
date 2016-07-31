@@ -10,13 +10,13 @@ import UIKit
 import Firebase
 import MobileCoreServices
 
-class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddBottlesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: - Global variables - Outlets
     
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var bottleNameTf: UITextField!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var bottlesImageView: UIImageView!
     
     // MARK: - Global variables - Add photo button (action and outlet)
     
@@ -39,20 +39,15 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBOutlet weak var addBottleBtn: UIButton!
     @IBAction func addBottleAction(sender: UIButton) {
-        if bottleNameTf.text == "" || bottlesImages.count == 0{
+        if bottleNameTf.text == "" || bottlesImageView.image == nil{
             addAlert(title: "Ooops!", message: "Please enter a name or an image for your bottle")
         } else {
-            let bottle = Bottles(name: bottleNameTf.text!, addedBy: currentUser)
+            imageToBase64()
+            let bottle = Bottles(name: bottleNameTf.text!, image: base64String, addedBy: currentUser)
             let bottleRef = DataService.dataService.rootRef.childByAppendingPath("bottles")
             let bottleNameRef = bottleRef.childByAppendingPath(bottleNameTf.text?.lowercaseString)
             
-            imageToBase64()
-            let imageStringRef = ["base64string": base64String]
-            let imagesRef = bottleNameRef.childByAppendingPath("images")
-            let imageDictionary = ["image": imageStringRef]
-            
             bottleNameRef.setValue(bottle.toAnyObject())
-            imagesRef.setValue(imageDictionary)
             
             addAlert(title: "Success!", message: "You have succesfully added a bottle item.")
         }
@@ -60,9 +55,8 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
     
     // MARK: - Global variables - Others
     
-    var bottlesImages = [BottlesImages]()
+    var imageData: NSData!
     var base64String: NSString!
-    var base64StringArray = [NSString]()
     var currentUser: String!
     
     // MARK: - Methods - viewDidLoad
@@ -78,30 +72,17 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         }
 
     }
+    
+    override func viewDidLayoutSubviews() {
+        bottlesImageView.hidden = true
+        changeAddImageButtonOrigin(156)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Methods - Collection View
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return bottlesImages.count
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImagesCell
-        
-        let images = bottlesImages[indexPath.item]
-        
-        let path = getDocumentsDirectory().stringByAppendingPathComponent(images.image)
-        cell.imageView.image = UIImage(contentsOfFile: path)
-
-        return cell
-    }
     
     // MARK: - Methods - Add alert
    
@@ -142,52 +123,27 @@ class AddBottlesViewController: UIViewController, UICollectionViewDataSource, UI
         } else {
             return
         }
-        
-        let imageName = NSUUID().UUIDString
-        
-        let imagePath = getDocumentsDirectory().stringByAppendingPathComponent(imageName)
-        
-        if let jpegData = UIImageJPEGRepresentation(newImage, 80){
-             jpegData.writeToFile(imagePath, atomically: true)
+               
+        if let jpegData = UIImagePNGRepresentation(newImage){
+            imageData = jpegData
         }
         
-        let images = BottlesImages(image: imageName)
-        bottlesImages.append(images)
-        collectionView.reloadData()
-        
-        print(bottlesImages)
-        
+        bottlesImageView.image = newImage
+        bottlesImageView.hidden = false
+        changeAddImageButtonOrigin(bottlesImageView.frame.origin.y + bottlesImageView.frame.height + 8)
         dismissViewControllerAnimated(true, completion: nil)
     
     }
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-        
-    func getDocumentsDirectory() -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
     
     func imageToBase64(){
-        for i in 0..<bottlesImages.count{
-            let bottleImageString = bottlesImages[i].image
-            
-            let path = getDocumentsDirectory().stringByAppendingPathComponent(bottleImageString)
-            let image = UIImage(contentsOfFile: path)
-            
-            //let data: NSData = bottleImageString.dataUsingEncoding(NSUTF32StringEncoding)!
-            
-            let data: NSData = UIImagePNGRepresentation(image!)!
-            
-            base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-            
-            base64StringArray.append(base64String)
-            
-           
-        }
-        
+        base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+    }
+    
+    func changeAddImageButtonOrigin(yOrigin: CGFloat){
+        addPhotoBtn.frame.origin.y = yOrigin
     }
     
     /*

@@ -13,7 +13,7 @@ import Firebase
 class Bottles {
     private var KEY: String!
     private var NAME: String!
-    private var IMAGE: UIImage!
+    private var IMAGE: NSString!
     private var ADDEDBY: String!
     
     var key: String!{
@@ -24,7 +24,7 @@ class Bottles {
         return NAME
     }
     
-    var image: UIImage!{
+    var image: NSString!{
         return IMAGE
     }
     
@@ -34,10 +34,17 @@ class Bottles {
     
     // Used for storing data to database
         
-    init(name: String, addedBy: String){
+    init(name: String, image: NSString, addedBy: String){
         self.KEY = key
         self.NAME = name
+        self.IMAGE = image
         self.ADDEDBY = addedBy
+    }
+    
+    func toAnyObject() -> AnyObject {
+        return ["name": name,
+                "image": image,
+                "addedBy": addedBy]
     }
     
     // Used for retrieving data from database
@@ -47,12 +54,6 @@ class Bottles {
         NAME = snapshot.value["name"] as! String
         ADDEDBY = snapshot.value["addedBy"] as! String
     }
-    
-    func toAnyObject() -> AnyObject {
-        return ["name": name,
-                "addedBy": addedBy]
-    }
-    
 }
 
 class Sources {
@@ -95,15 +96,6 @@ class Sources {
         self.ADDEDBY = addedBy
     }
     
-    init(snapshot: FDataSnapshot){
-        KEY = snapshot.key
-        NAME = snapshot.value["name"] as! String
-        IMAGE = snapshot.value["image"] as! NSString
-        LATITUDE = snapshot.value["latitude"] as! Double
-        LONGITUDE = snapshot.value["longitude"] as! Double
-        ADDEDBY = snapshot.value["addedBy"] as! String
-    }
-    
     func toAnyObject() -> AnyObject {
         return [
             "name": name,
@@ -114,6 +106,14 @@ class Sources {
         ]
     }
     
+    init(snapshot: FDataSnapshot){
+        KEY = snapshot.key
+        NAME = snapshot.value["name"] as! String
+        IMAGE = snapshot.value["image"] as! NSString
+        LATITUDE = snapshot.value["latitude"] as! Double
+        LONGITUDE = snapshot.value["longitude"] as! Double
+        ADDEDBY = snapshot.value["addedBy"] as! String
+    }
 }
 
 
@@ -145,13 +145,6 @@ class Reviews {
         self.ADDEDTO = addedto
     }
     
-    init(snapshot: FDataSnapshot){
-        KEY = snapshot.key
-        TEXT = snapshot.value["text"] as! String
-        ADDEDBY = snapshot.value["addedBy"] as! String
-        ADDEDTO = snapshot.value["addedTo"] as! String
-    }
-    
     func toAnyObject() -> AnyObject {
         return [
             "text": text,
@@ -160,4 +153,10 @@ class Reviews {
         ]
     }
     
+    init(snapshot: FDataSnapshot){
+        KEY = snapshot.key
+        TEXT = snapshot.value["text"] as! String
+        ADDEDBY = snapshot.value["addedBy"] as! String
+        ADDEDTO = snapshot.value["addedTo"] as! String
+    }
 }

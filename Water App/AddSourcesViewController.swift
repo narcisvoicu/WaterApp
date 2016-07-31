@@ -20,24 +20,11 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
         }
     }
     
-    
-    
     @IBOutlet weak var sourceNameTf: UITextField!
     
     @IBOutlet weak var addImageBtn: UIButton!
     @IBAction func addImageAction(sender: UIButton) {
-        
-        let alert = UIAlertController(title: "Add Image", message: "Choose the source of the image", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        alert.addAction(UIAlertAction(title: "Take a photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            self.openCamera()
-        }))
-        alert.addAction(UIAlertAction(title: "Select image from albums", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            self.addImages()
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        
-        presentViewController(alert, animated: true, completion: nil)
-        
+        openCamera()
     }
     
     @IBOutlet weak var sourceImageView: UIImageView!
@@ -53,13 +40,6 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
             let sourceNameRef = sourceRef.childByAppendingPath(sourceNameTf.text?.lowercaseString)
             
             sourceNameRef.setValue(source.toAnyObject())
-            //imageToBase64()
-//            let imageStringRef = ["base64string": base64String]
-//            let imagesRef = bottleNameRef.childByAppendingPath("images")
-//            let imageDictionary = ["image": imageStringRef]
-            
-          //  bottleNameRef.setValue(bottle.toAnyObject())
-          //  imagesRef.setValue(imageDictionary)
             
             addAlert(title: "Success!", message: "You have succesfully added a source item.")
         }
@@ -67,10 +47,8 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     // MARK: - Global variables - Others
     
-   // var bottlesImages = [BottlesImages]()
     var imageData: NSData!
     var base64String: NSString!
-   // var base64StringArray = [NSString]()
     var currentUser: String!
     let locationManager = CLLocationManager()
     var latitude: Double!
@@ -90,6 +68,11 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         locationSetup()
     }
+    
+    override func viewDidLayoutSubviews() {
+        sourceImageView.hidden = true
+        changeAddImageButtonOrigin(156)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -103,21 +86,12 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         let location = locations.last
-        let center = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
-        
         latitude = location?.coordinate.latitude
         longitude = location?.coordinate.longitude
-        
-     //  let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
-     //   annotation.coordinate = center
-     //   mapView.setRegion(region, animated: true)
-        
         locationManager.stopUpdatingLocation()
     }
     
@@ -135,13 +109,6 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     // MARK: - Methods - Images methods
     
-    func addImages(){
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        presentViewController(picker, animated: true, completion: nil)
-    }
-    
     func openCamera(){
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
             let picker = UIImagePickerController()
@@ -157,7 +124,6 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         var newImage: UIImage
-        //var imageData: NSData
         
         if let possibleImage = info[UIImagePickerControllerEditedImage]{
             newImage = possibleImage as! UIImage
@@ -172,51 +138,22 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
         }
         
         sourceImageView.image = newImage
-        
-        
-     //   let imageName = NSUUID().UUIDString
-      //  let imagePath = getDocumentsDirectory().stringByAppendingPathComponent(imageName)
-      //  let images = BottlesImages(image: imageName)
-       // bottlesImages.append(images)
-       // collectionView.reloadData()
-        
-      //  print(bottlesImages)
-        
+        sourceImageView.hidden = false
+        changeAddImageButtonOrigin(sourceImageView.frame.origin.y + sourceImageView.frame.height + 8)
         dismissViewControllerAnimated(true, completion: nil)
-        
     }
+    
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-//    func getDocumentsDirectory() -> NSString {
-//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-//        let documentsDirectory = paths[0]
-//        return documentsDirectory
-//    }
-    
-    
-    
     func imageToBase64(){
-        
         base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-        
-//        for i in 0..<bottlesImages.count{
-//            let bottleImageString = bottlesImages[i].image
-//            
-//            let path = getDocumentsDirectory().stringByAppendingPathComponent(bottleImageString)
-//            let image = UIImage(contentsOfFile: path)
-//            
-//            //let data: NSData = bottleImageString.dataUsingEncoding(NSUTF32StringEncoding)!
-//            
-//            let data: NSData = UIImagePNGRepresentation(image!)!
-//            
-//            base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-//            
-//            base64StringArray.append(base64String)
-//            
-//        }
-   }
+    }
+    
+    func changeAddImageButtonOrigin(yOrigin: CGFloat){
+        addImageBtn.frame.origin.y = yOrigin
+    }
 
     /*
     // MARK: - Navigation
