@@ -67,12 +67,18 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
         }
         
         locationSetup()
+        
+        sourceImageView.hidden = true
     }
     
     override func viewDidLayoutSubviews() {
-        sourceImageView.hidden = true
-        changeAddImageButtonOrigin(156)
+        if sourceImageView.image == nil {
+            changeAddImageButtonOrigin(156)
+        } else {
+            // do nothing
+        }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

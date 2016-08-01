@@ -70,12 +70,18 @@ class AddBottlesViewController: UIViewController, UIImagePickerControllerDelegat
             }) { (error) -> Void in
                 print(error.description)
         }
-
+        
+        bottlesImageView.hidden = true
     }
     
     override func viewDidLayoutSubviews() {
-        bottlesImageView.hidden = true
-        changeAddImageButtonOrigin(156)
+        if bottlesImageView.image == nil {
+            changeAddImageButtonOrigin(156)
+            print("didLayout")
+        } else {
+            // do nothing
+            print("didLayout else")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -130,6 +136,7 @@ class AddBottlesViewController: UIViewController, UIImagePickerControllerDelegat
         
         bottlesImageView.image = newImage
         bottlesImageView.hidden = false
+        print("ImageView is hidden: \(bottlesImageView.hidden)")
         changeAddImageButtonOrigin(bottlesImageView.frame.origin.y + bottlesImageView.frame.height + 8)
         dismissViewControllerAnimated(true, completion: nil)
     

@@ -69,11 +69,32 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         print("viewForAnnotation")
-        return nil
+        
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
+        var decodedData = NSData()
+       
+            decodedData = NSData(base64EncodedString: sources[0].image as String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!
+    
+            let image = UIImage(data: decodedData)
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            imageView.image = image
+            annotationView.leftCalloutAccessoryView = imageView
+            annotationView.canShowCallout = true
+            
+            print("Sources count: \(sources.count)")
+           // print("Image base64 string: \(sources[i].image)")
+        
+        return annotationView
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         print("didSelectAnnotationView")
+    }
+    
+    func decodeImage(){
+    //    let decodedData = NSData(base64EncodedString: imageBase64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+     //   let decodedImage = UIImage(data: decodedData!)
+        
     }
     
     func setupAnnotations(){
