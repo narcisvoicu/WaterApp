@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64024D381D4F8B84005FE209 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64024D371D4F8B84005FE209 /* Utils.swift */; };
+		64024D3A1D4F92F4005FE209 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64024D391D4F92F4005FE209 /* StringConstants.swift */; };
 		BF97575D0DA44745E0FC9AA1 /* Pods_Water_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */; };
 		EC40BE811CAEA09E006AA121 /* WaterItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40BE801CAEA09E006AA121 /* WaterItems.swift */; };
 		EC4B5CDC1C85C6D3001D43D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4B5CDB1C85C6D3001D43D9 /* AppDelegate.swift */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Water_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64024D371D4F8B84005FE209 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		64024D391D4F92F4005FE209 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		78654F255652256C0276D37B /* Pods-Water App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.debug.xcconfig"; sourceTree = "<group>"; };
 		DAE384D6342C497E087799E3 /* Pods-Water App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Water App/Pods-Water App.release.xcconfig"; sourceTree = "<group>"; };
 		EC40BE801CAEA09E006AA121 /* WaterItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WaterItems.swift; path = "Water App/WaterItems.swift"; sourceTree = "<group>"; };
@@ -86,6 +90,16 @@
 				2022C925BD72FB51F08ADA12 /* Pods_Water_App.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		64024D3B1D4F92FA005FE209 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				64024D391D4F92F4005FE209 /* StringConstants.swift */,
+				64024D371D4F8B84005FE209 /* Utils.swift */,
+			);
+			name = Utils;
+			path = "Water App";
 			sourceTree = "<group>";
 		};
 		6FD6E9F3EF51E316AE2302E4 /* Pods */ = {
@@ -150,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				EC4B5CDA1C85C6D3001D43D9 /* Water App */,
+				64024D3B1D4F92FA005FE209 /* Utils */,
 				EC4B5CD91C85C6D3001D43D9 /* Products */,
 				6FD6E9F3EF51E316AE2302E4 /* Pods */,
 				08FED79B9F2431159C21F5FA /* Frameworks */,
@@ -336,6 +351,7 @@
 			files = (
 				EC51BFB81C88889D0042357D /* LoginViewController.swift in Sources */,
 				EC4B5CE01C85C6D3001D43D9 /* WaterSourcesViewController.swift in Sources */,
+				64024D3A1D4F92F4005FE209 /* StringConstants.swift in Sources */,
 				EC4B5CDC1C85C6D3001D43D9 /* AppDelegate.swift in Sources */,
 				EC4B5CF21C85D710001D43D9 /* MyAccountViewController.swift in Sources */,
 				ECE297A31C89CF4C00DE8294 /* SignInViewController.swift in Sources */,
@@ -343,6 +359,7 @@
 				EC4B5CF01C85D6FF001D43D9 /* BottlesViewController.swift in Sources */,
 				ECA0FD0A1C94BC3900BA922D /* InfoBottlesViewController.swift in Sources */,
 				ECA0FD0C1C94BC4B00BA922D /* InfoSourcesViewController.swift in Sources */,
+				64024D381D4F8B84005FE209 /* Utils.swift in Sources */,
 				EC4B5CDE1C85C6D3001D43D9 /* HomeViewController.swift in Sources */,
 				ECA0FD081C94BC2100BA922D /* AddSourcesViewController.swift in Sources */,
 				ECA0FD021C9492FB00BA922D /* AddedByMeViewController.swift in Sources */,

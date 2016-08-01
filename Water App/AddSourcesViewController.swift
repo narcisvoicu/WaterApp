@@ -32,7 +32,7 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
     @IBOutlet weak var addSourceBtn: UIButton!
     @IBAction func addSourceAction(sender: UIButton) {
         if sourceNameTf.text == "" || sourceImageView.image == nil{
-            addAlert(title: "Ooops!", message: "Please enter a name or an image for your bottle")
+            addAlert(title: "Ooops!", message: "Please enter a name or an image for your source")
         } else {
             imageToBase64()
             let source = Sources(name: sourceNameTf.text!, image: base64String, latitude: latitude, longitude: longitude, addedBy: currentUser)

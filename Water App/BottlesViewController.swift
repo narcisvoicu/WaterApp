@@ -142,7 +142,7 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
     }
     
 
-    
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -152,11 +152,9 @@ class BottlesViewController: UIViewController, UISearchBarDelegate, UISearchResu
         if segue.identifier == "bottleDetails"{
             if let infoBottle = segue.destinationViewController as? InfoBottlesViewController{
                 if let bottleIndex = tableView.indexPathForSelectedRow?.row {
-                    infoBottle.bottleName1 = bottleName[bottleIndex] 
-                    
+                    infoBottle.bottleName1 = bottleName[bottleIndex]
                 }
             }
-            
         }
     }
     

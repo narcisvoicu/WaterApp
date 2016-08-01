@@ -57,7 +57,6 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
         mapView.endEditing(true)
     }
     
-    
     func addItems(){
         if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil && DataService.dataService.currentUserRef.authData != nil {
             performSegueWithIdentifier("addSource", sender: nil)
@@ -76,7 +75,6 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         print("didSelectAnnotationView")
     }
-    
     
     func setupAnnotations(){
         var allAnnotations = [MKPointAnnotation]()
