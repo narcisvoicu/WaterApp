@@ -7,18 +7,39 @@
 //
 
 import UIKit
+import Firebase
 
 class InfoSourcesViewController: UIViewController {
 
+    @IBOutlet weak var sourceNameLabel: UILabel!
+    @IBOutlet weak var sourceImageView: UIImageView!
+    var sourceName: String!
+    var imageBase64String: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        sourceNameLabel.text = sourceName
+        
+        let imageSourceRef = DataService.dataService.rootRef.childByAppendingPath("sources").childByAppendingPath(sourceNameLabel.text!.lowercaseString).childByAppendingPath("image")
+        
+        imageSourceRef.observeEventType(FEventType.Value, withBlock: { snapshot in
+            self.imageBase64String = snapshot.value as! String
+            self.decodeImage()
+        }) { (error) in
+            print(error.description)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func decodeImage(){
+        let decodedData = NSData(base64EncodedString: imageBase64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+        let decodedImage = UIImage(data: decodedData!)
+        sourceImageView.image = decodedImage
     }
     
     

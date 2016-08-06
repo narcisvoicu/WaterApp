@@ -62,6 +62,7 @@ class Sources {
     private var IMAGE: NSString!
     private var LATITUDE: Double!
     private var LONGITUDE: Double!
+    private var LOCATION: String!
     private var ADDEDBY: String!
 
     var key: String!{
@@ -84,15 +85,20 @@ class Sources {
         return LONGITUDE
     }
     
+    var location: String!{
+        return LOCATION
+    }
+    
     var addedBy: String!{
         return ADDEDBY
     }
     
-    init(name: String, image: NSString, latitude: Double, longitude: Double, addedBy: String){
+    init(name: String, image: NSString, latitude: Double, longitude: Double, location: String, addedBy: String){
         self.NAME = name
         self.IMAGE = image
         self.LATITUDE = latitude
         self.LONGITUDE = longitude
+        self.LOCATION = location
         self.ADDEDBY = addedBy
     }
     
@@ -102,6 +108,7 @@ class Sources {
             "image": image,
             "latitude": latitude,
             "longitude": longitude,
+            "location": location,
             "addedBy": addedBy,
         ]
     }
@@ -112,6 +119,7 @@ class Sources {
         IMAGE = snapshot.value["image"] as! NSString
         LATITUDE = snapshot.value["latitude"] as! Double
         LONGITUDE = snapshot.value["longitude"] as! Double
+        LOCATION = snapshot.value["location"] as! String
         ADDEDBY = snapshot.value["addedBy"] as! String
     }
 }

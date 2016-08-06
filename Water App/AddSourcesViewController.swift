@@ -35,13 +35,18 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
             addAlert(title: "Ooops!", message: "Please enter a name or an image for your source")
         } else {
             imageToBase64()
-            let source = Sources(name: sourceNameTf.text!, image: base64String, latitude: latitude, longitude: longitude, addedBy: currentUser)
-            let sourceRef = DataService.dataService.rootRef.childByAppendingPath("sources")
-            let sourceNameRef = sourceRef.childByAppendingPath(sourceNameTf.text?.lowercaseString)
+            if (longitude != nil && latitude != nil){
+                let source = Sources(name: sourceNameTf.text!, image: base64String, latitude: latitude, longitude: longitude, location: locationName, addedBy: currentUser)
+                let sourceRef = DataService.dataService.rootRef.childByAppendingPath("sources")
+                let sourceNameRef = sourceRef.childByAppendingPath(sourceNameTf.text?.lowercaseString)
+                
+                sourceNameRef.setValue(source.toAnyObject())
+                
+                addAlert(title: "Success!", message: "You have succesfully added a source item.")
+            } else {
+                addAlert(title: "Error!", message: "You're location can not be detected, please try again later.")
+            }
             
-            sourceNameRef.setValue(source.toAnyObject())
-            
-            addAlert(title: "Success!", message: "You have succesfully added a source item.")
         }
     }
     
@@ -53,6 +58,7 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
     let locationManager = CLLocationManager()
     var latitude: Double!
     var longitude: Double!
+    var locationName: String!
     
     // MARK: - Methods - viewDidLoad
     
@@ -96,8 +102,32 @@ class AddSourcesViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last
+    
         latitude = location?.coordinate.latitude
         longitude = location?.coordinate.longitude
+        
+        let geoCoder = CLGeocoder()
+        geoCoder.reverseGeocodeLocation(location!) { (placemarks, error) in
+            var placeMark: CLPlacemark!
+            placeMark = placemarks?.last
+            
+            // Location name
+            if let name = placeMark.addressDictionary!["Name"] as? NSString {
+                self.locationName = "\(name)"
+            }
+            
+            // Street address
+            if let street = placeMark.addressDictionary!["Thoroughfare"] as? NSString {
+                self.locationName = "\(self.locationName), \(street)"
+            }
+            
+            // City
+            if let city = placeMark.addressDictionary!["City"] as? NSString {
+                self.locationName = "\(self.locationName), \(city)"
+            }
+            print("Location name: \(self.locationName)")
+        }
+        
         locationManager.stopUpdatingLocation()
     }
     

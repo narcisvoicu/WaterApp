@@ -42,7 +42,6 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
             }
             self.sources = newSources
             self.setupAnnotations()
-            print("Sources: \(self.sources)")
         }) { (error) -> Void in
             print(error.description)
         }
@@ -69,47 +68,58 @@ class WaterSourcesViewController: UIViewController, MKMapViewDelegate, CLLocatio
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         print("viewForAnnotation")
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            //println("Pinview was nil")
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+        }
         
-        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
-        var decodedData = NSData()
-       
-            decodedData = NSData(base64EncodedString: sources[0].image as String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!
-    
-            let image = UIImage(data: decodedData)
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-            imageView.image = image
-            annotationView.leftCalloutAccessoryView = imageView
-            annotationView.canShowCallout = true
-            
-            print("Sources count: \(sources.count)")
-           // print("Image base64 string: \(sources[i].image)")
+        let button = UIButton(type: UIButtonType.DetailDisclosure)
         
-        return annotationView
+        pinView?.rightCalloutAccessoryView = button
+        return pinView
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         print("didSelectAnnotationView")
     }
     
-    func decodeImage(){
-    //    let decodedData = NSData(base64EncodedString: imageBase64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-     //   let decodedImage = UIImage(data: decodedData!)
-        
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView{
+            performSegueWithIdentifier("sourcesDetails", sender: view)
+        }
     }
     
     func setupAnnotations(){
-        var allAnnotations = [MKPointAnnotation]()
+        var allAnnotations = [WaterSourceAnnotation]()
         for i in 0 ..< sources.count{
-            let annotation = MKPointAnnotation()
+            let annotation = WaterSourceAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: sources[i].latitude, longitude: sources[i].longitude)
             annotation.title = sources[i].name
-            print("Annotation: \(annotation)")
-            print("Annotation latitude: \(annotation.coordinate.latitude)")
+            annotation.subtitle = sources[i].location
+            let decodedData = NSData(base64EncodedString: sources[i].image as String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!
+            let image = UIImage(data: decodedData)
+            annotation.image = image
             mapView.addAnnotation(annotation)
             allAnnotations.append(annotation)
-            
         }
         mapView.showAnnotations(allAnnotations, animated: true)
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "sourcesDetails"{
+            if let infoSource = segue.destinationViewController as? InfoSourcesViewController{
+                infoSource.sourceName = ((sender as? MKAnnotationView)?.annotation?.title)!
+            }
+        }
     }
 
 }
